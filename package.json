@@ -1,0 +1,29 @@
+{
+  "name": "wcasino",
+  "version": "0.0.0",
+  "description": "steemit for casino",
+  "main": "index.js",
+  "homepage": "https://steemit.com/@wonsama",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wonsama/wcasino.git"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "keywords": [
+    "casino",
+    "steemit"
+  ],
+  "author": "wonsama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wonsama/wcasino/issues"
+  },
+  "dependencies": {
+    "dateformat": "^3.0.3",
+    "dotenv": "^6.0.0",
+    "steem": "^0.7.1"
+  }
+}
