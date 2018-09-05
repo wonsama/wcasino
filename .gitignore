@@ -63,3 +63,4 @@ typings/
 test*
 
 .DS_Store
+env.sample
