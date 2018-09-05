@@ -3,7 +3,7 @@ const {getnumber} = require ('./wnumber');	// change to number
 const {debug, info, error} = require('./wlog');						// log
 
 const steem = require('steem');
-const fs = require('fs').promises;				// Experimental promise, support over v10.
+const fs = require('fs');				// Experimental promise, support over v10.
 
 const FILE_CHARSET = 'utf-8';
 
@@ -15,15 +15,31 @@ let fn = {};
 /*
 * 최종 블록 번호를 기록한다 
 */
-fn.saveBlockNumber = (blockNumber) =>{
-	return fs.writeFile( LAST_BLOCK_FILE, blockNumber.toString(), FILE_CHARSET_UTF8);
+fn.saveBlockNumber = async (blockNumber) =>{
+	return new Promise((resolve,reject)=>{
+		fs.writeFile( LAST_BLOCK_FILE, blockNumber.toString(), FILE_CHARSET_UTF8, (err)=>{
+			if(err){
+				reject(err);
+			}else{
+				resolve();	
+			}
+		});
+	});
 }
 
 /*
 * 최종 블록 번호를 읽어들인다
 */
-fn.readBlockNumber = () =>{
-	return fs.readFile(LAST_BLOCK_FILE, FILE_CHARSET_UTF8)
+fn.readBlockNumber = async () =>{
+	return new Promise((resolve,reject)=>{
+		fs.readFile(LAST_BLOCK_FILE, FILE_CHARSET_UTF8, (err,data)=>{
+			if(err){
+				reject(err);
+			}else{
+				resolve(data);
+			}
+		});
+	});
 }
 
 /*
