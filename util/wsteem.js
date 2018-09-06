@@ -36,12 +36,21 @@ https://steemit.com/utopian-io/@stmdev/beem-blockchain-gettransaction-gettransac
 const request = require('request');
 
 const {to} = require('./wutil');
+const { Client, PrivateKey } = require('dsteem');
 
 const WC_API_URI = process.env.WC_API_URI;
 const WC_ME_ACCOUNT = process.env.WC_ME_ACCOUNT;
 const WC_KEY_ACTIVE = process.env.WC_KEY_ACTIVE;
 
+const EXPIRE_TIME = 60 * 1000; // 유효시간 1분 : 1분안에 처리 안되면 무효됨
+
 const steem = require('steem');
+
+const STEEM_NET = {
+	addressPrefix: 'STM',
+	chainId: '0000000000000000000000000000000000000000000000000000000000000000'
+};
+
 
 let fn = {};
 
@@ -92,25 +101,65 @@ let send = async (method, params, id=1) =>{
 }
 
 /*
+* 만료시간 정보를 생성한다 
+*/
+let getExpiration = () =>{
+    return new Date(Date.now() + EXPIRE_TIME)
+        .toISOString()
+        .slice(0, -5);
+}
+
+fn.keyEnc = (key)=>{
+	return PrivateKey.fromString(key); // PrivateKey: 5KaNM8...V2kAP3
+}
+
+fn.props = async (client)=>{
+	return client.database.getDynamicGlobalProperties();
+}
+
+fn.getClient = ()=>{
+	return new Client( WC_API_URI, STEEM_NET );
+}
+
+/*
+* 작업처리를 위한 명령 목록을 만든다
+* @param props 네트워크 설정정보
+* @param operations 수행작업 명령 목록
+* @param extensions 확장 수행목록 (수익자 설정 등)
+*/
+fn.makeOperations = (props, operations, extensions=[])=>{
+
+    let op = {
+			ref_block_num: props.head_block_number,
+	    ref_block_prefix: Buffer.from(props.head_block_id, 'hex').readUInt32LE(4),
+	    expiration: getExpiration(),
+	    operations: operations,
+	    extensions: extensions,
+    }
+
+    return op;
+}
+
+/*
 * 키를 복제한다 (배열이 아닌경우 동작)
 * @param key 키 또는 키 배열
 * @param len 복제길이
 * @return 키목록
 */
-let dupKeys = (key, len) =>{
-	let keys = [];
-	if(!Array.isArray(key)){
-		keys = [];
-		for(let i=0;i<len;i++){
-			keys.push(key);
-		}
-		// 단건인 경우, len 만큼 복제 후 반환 
-		return keys;
-	}else{
-		// 입력받은 값이 배열인 경우 
-		return key;	
-	}
-}
+// let dupKeys = (key, len) =>{
+// 	let keys = [];
+// 	if(!Array.isArray(key)){
+// 		keys = [];
+// 		for(let i=0;i<len;i++){
+// 			keys.push(key);
+// 		}
+// 		// 단건인 경우, len 만큼 복제 후 반환 
+// 		return keys;
+// 	}else{
+// 		// 입력받은 값이 배열인 경우 
+// 		return key;	
+// 	}
+// }
 
 /*
 * 송금용 오퍼레이션 생성 
@@ -131,24 +180,11 @@ fn.makeOpTransfer = (from_author, to_author, memo="", amount="0.001 SBD")=>{
 	];
 }
 
-/*
-* 나에게 메모를 작성한다
-* @param memo 작성할 메모 목록 / 메모당 최대 2018 bytes
-* @param amount 송금액 (STEEM/SBD) 
-*/
-fn.sendMemo = (memo, amount="0.001 SBD")=>{
-
-	// 배열로 보내는 경우 송신자와 내용과 시간이 변동이 없어 
-	// duplicate signature included 형태로 나올 수 있음
-	// 그런 경우에는 1개씩 보내서 sign이 정상적으로 이뤄지도록 해야 됨에 유의
-	let t = fn.makeOpTransfer(WC_ME_ACCOUNT, WC_ME_ACCOUNT, memo, amount);
-
-	return steem.broadcast.sendAsync(
-		{
-	  	extensions: [],
-	  	operations: [t]
-		}, [WC_KEY_ACTIVE]
-	);
+fn.appendMemo = (sourceArr, memoArr, amount="0.001 SBD")=>{
+	for(let memo of memoArr){
+		sourceArr.push(fn.makeOpTransfer(WC_ME_ACCOUNT, WC_ME_ACCOUNT, memo, amount));	
+	}
+	return sourceArr;
 }
 
 /*
@@ -159,29 +195,29 @@ fn.sendMemo = (memo, amount="0.001 SBD")=>{
 * @param memo 메모 
 * @param amount 금액 (0.001 STEEM 이런 형태로 자릿수를 맞춰야 한다 .toFixed(3))
 */ 
-fn.sendTransfer = (keyActive, from_author, to_author, memo="", amount="0.001 STEEM")=>{
-	return steem.broadcast.sendAsync(
-		{
-	  	extensions: [],
-	  	operations: [
-		    makeOpTransfer(from_author, to_author, memo, amount)
-		  ]
-		}, [keyActive]
-	);
-}
+// fn.sendTransfer = (keyActive, from_author, to_author, memo="", amount="0.001 STEEM")=>{
+// 	return steem.broadcast.sendAsync(
+// 		{
+// 	  	extensions: [],
+// 	  	operations: [
+// 		    makeOpTransfer(from_author, to_author, memo, amount)
+// 		  ]
+// 		}, [keyActive]
+// 	);
+// }
 
-fn.sendTransfers = (keyActives, OpTransfers)=>{
+// fn.sendTransfers = (keyActives, OpTransfers)=>{
 
-	// 입력받은 키가 하나라면 복제하여 넣어준다. (키 권한을 상속받았다고 가정하기 위함)
-	let keys = dupKeys(keyActives, keyActives.length);
+// 	// 입력받은 키가 하나라면 복제하여 넣어준다. (키 권한을 상속받았다고 가정하기 위함)
+// 	let keys = dupKeys(keyActives, keyActives.length);
 
-	return steem.broadcast.sendAsync(
-		{
-	  	extensions: [],
-	  	operations: OpTransfers
-		}, keys
-	);
-}
+// 	return steem.broadcast.sendAsync(
+// 		{
+// 	  	extensions: [],
+// 	  	operations: OpTransfers
+// 		}, keys
+// 	);
+// }
 
 /*
 * 만료시간 정보를 생성한다 

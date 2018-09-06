@@ -40,30 +40,12 @@ let makeFolder = (path) =>{
   }
 }
 
-fn.LOG_LEVEL = LOG_LEVEL;
-
-fn.trace = (msg) =>{
-  fn.log(msg, LOG_LEVEL.TRACE);
-}
-fn.debug = (msg) =>{
-  fn.log(msg, LOG_LEVEL.DEBUG);
-}
-fn.info = (msg) =>{
-  fn.log(msg, LOG_LEVEL.INFO);
-}
-fn.warn = (msg) =>{
-  fn.log(msg, LOG_LEVEL.WARN);
-}
-fn.error = (msg) =>{
-  fn.log(msg, LOG_LEVEL.ERROR);
-}
-
 /*
 * 로그를 기록한다
 * @param msg 메시지
 * @param level 로그레벨 (기본 DEBUG)
 */
-fn.log = (msg, level=LOG_LEVEL.DEBUG) => {
+let log = (msg, level=LOG_LEVEL.DEBUG) => {
 
   let message = `[${LOG_SHOW_PREFIX[level]}][${new Date().toISOString()}] ${msg}`;
 
@@ -94,6 +76,22 @@ fn.log = (msg, level=LOG_LEVEL.DEBUG) => {
       console.error(new Date().toISOString(), '[wlog] unknown error : ', e);
     }
   }
+}
+
+fn.trace = (msg) =>{
+  fn.log(msg, LOG_LEVEL.TRACE);
+}
+fn.debug = (msg) =>{
+  fn.log(msg, LOG_LEVEL.DEBUG);
+}
+fn.info = (msg) =>{
+  fn.log(msg, LOG_LEVEL.INFO);
+}
+fn.warn = (msg) =>{
+  fn.log(msg, LOG_LEVEL.WARN);
+}
+fn.error = (msg) =>{
+  fn.log(msg, LOG_LEVEL.ERROR);
 }
 
 module.exports = fn;
