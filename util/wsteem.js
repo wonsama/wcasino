@@ -37,6 +37,7 @@ const request = require('request');
 
 const {to} = require('./wutil');
 const { Client, PrivateKey } = require('dsteem');
+const {isItemEmptyMsg} = require('./wstring');
 
 const WC_API_URI = process.env.WC_API_URI;
 const WC_ME_ACCOUNT = process.env.WC_ME_ACCOUNT;
@@ -50,7 +51,6 @@ const STEEM_NET = {
 	addressPrefix: 'STM',
 	chainId: '0000000000000000000000000000000000000000000000000000000000000000'
 };
-
 
 let fn = {};
 
@@ -102,6 +102,7 @@ let send = async (method, params, id=1) =>{
 
 /*
 * 만료시간 정보를 생성한다 
+* @return 만료시간 정보 / 현재 1분
 */
 let getExpiration = () =>{
     return new Date(Date.now() + EXPIRE_TIME)
@@ -109,25 +110,42 @@ let getExpiration = () =>{
         .slice(0, -5);
 }
 
-fn.keyEnc = (key)=>{
+/*
+* 입력받은 키를 압호화 한다
+* @param key 키
+* @return 암호화 된 키
+*/
+let keyEnc = (key)=>{
 	return PrivateKey.fromString(key); // PrivateKey: 5KaNM8...V2kAP3
 }
 
-fn.props = async (client)=>{
+/*
+* 클라이언트 정보를 반환한다 
+* @return 클라이언트 정보
+*/
+let getClient = ()=>{
+	return new Client( WC_API_URI, STEEM_NET );
+}
+
+/*
+* (async) 설정 정보를 가져온다
+* @param 클라이언트 정보
+* @return 설정 정보
+*/
+let getProps = async (client)=>{
 	return client.database.getDynamicGlobalProperties();
 }
 
-fn.getClient = ()=>{
-	return new Client( WC_API_URI, STEEM_NET );
-}
+
 
 /*
 * 작업처리를 위한 명령 목록을 만든다
 * @param props 네트워크 설정정보
 * @param operations 수행작업 명령 목록
 * @param extensions 확장 수행목록 (수익자 설정 등)
+* @return operation 정보
 */
-fn.makeOperations = (props, operations, extensions=[])=>{
+let makeOperations = (props, operations, extensions=[])=>{
 
     let op = {
 			ref_block_num: props.head_block_number,
@@ -141,34 +159,14 @@ fn.makeOperations = (props, operations, extensions=[])=>{
 }
 
 /*
-* 키를 복제한다 (배열이 아닌경우 동작)
-* @param key 키 또는 키 배열
-* @param len 복제길이
-* @return 키목록
-*/
-// let dupKeys = (key, len) =>{
-// 	let keys = [];
-// 	if(!Array.isArray(key)){
-// 		keys = [];
-// 		for(let i=0;i<len;i++){
-// 			keys.push(key);
-// 		}
-// 		// 단건인 경우, len 만큼 복제 후 반환 
-// 		return keys;
-// 	}else{
-// 		// 입력받은 값이 배열인 경우 
-// 		return key;	
-// 	}
-// }
-
-/*
 * 송금용 오퍼레이션 생성 
 * @param from_author 보내는이 
 * @param to_author 받는이
 * @param memo 메모 / 최대 2048 bytes
 * @param amount 송금액 (STEEM/SBD) 
+* @return 송금용 정보
 */
-fn.makeOpTransfer = (from_author, to_author, memo="", amount="0.001 SBD")=>{
+let makeOpTransfer = (from_author, to_author, memo="", amount="0.001 SBD")=>{
 	return [
 		"transfer",
 		{
@@ -180,93 +178,62 @@ fn.makeOpTransfer = (from_author, to_author, memo="", amount="0.001 SBD")=>{
 	];
 }
 
-fn.appendMemo = (sourceArr, memoArr, amount="0.001 SBD")=>{
-	for(let memo of memoArr){
-		sourceArr.push(fn.makeOpTransfer(WC_ME_ACCOUNT, WC_ME_ACCOUNT, memo, amount));	
+/*
+* 다건 송금처리를 수행한다
+* @param sendInfo {to_author, amount:"0.001 STEEM",  memo:""}
+* @param from_author 보내는 계정명
+* @param keyActive 보내는 계정 엑티브키
+*/
+fn.sendMoney = async (sendInfo, from_author=WC_ME_ACCOUNT, keyActive=WC_KEY_ACTIVE)=>{
+	
+	let err;
+
+	// 유효성검증 - 입력값
+	let itemEmptyMsg = isItemEmptyMsg([
+		{name:"sendInfo", value:sendInfo},
+		{name:"from_author", value:from_author},
+		{name:"keyActive", value:keyActive},
+	]);
+	if(itemEmptyMsg!=null){
+		return Promise.reject(itemEmptyMsg);
 	}
-	return sourceArr;
+
+	// 유효성검증 - 입력값 상세, sendInfo
+	for(let si of sendInfo){
+		itemEmptyMsg = isItemEmptyMsg([
+			{name:"to_author", value:si.to_author},
+			{name:"amount", value:si.amount},
+			// {name:"memo", value:memo}, // 메모는 옵션이므로 점검하지 않음
+		]);
+		if(itemEmptyMsg!=null){
+			return Promise.reject('in sendInfo : '+itemEmptyMsg);
+		}
+	}
+
+	// 글로벌 설정 값 로딩 
+	let client = getClient();
+	let props;
+	[err, props] = await to(getProps(client));
+
+	// 송금처리
+	let res;
+	if(!err){
+		let operations = [];
+		for(let si of sendInfo){
+			operations.push( makeOpTransfer(from_author, si.to_author, si.memo, si.amount) );	
+		}
+		
+		let wcKeyActiveEnc = keyEnc(keyActive);
+		let op = makeOperations(props, operations);
+		let stx = client.broadcast.sign(op, wcKeyActiveEnc);	
+		[err, res] = await to(client.broadcast.send(stx));
+	}
+	
+	if(err){
+		return Promise.reject(err);
+	}
+	return Promise.resolve(res);
 }
-
-/*
-* 단건 송금
-* @param keyActive 엑티브키
-* @param from_author 엑티브키
-* @param to_author 엑티브키
-* @param memo 메모 
-* @param amount 금액 (0.001 STEEM 이런 형태로 자릿수를 맞춰야 한다 .toFixed(3))
-*/ 
-// fn.sendTransfer = (keyActive, from_author, to_author, memo="", amount="0.001 STEEM")=>{
-// 	return steem.broadcast.sendAsync(
-// 		{
-// 	  	extensions: [],
-// 	  	operations: [
-// 		    makeOpTransfer(from_author, to_author, memo, amount)
-// 		  ]
-// 		}, [keyActive]
-// 	);
-// }
-
-// fn.sendTransfers = (keyActives, OpTransfers)=>{
-
-// 	// 입력받은 키가 하나라면 복제하여 넣어준다. (키 권한을 상속받았다고 가정하기 위함)
-// 	let keys = dupKeys(keyActives, keyActives.length);
-
-// 	return steem.broadcast.sendAsync(
-// 		{
-// 	  	extensions: [],
-// 	  	operations: OpTransfers
-// 		}, keys
-// 	);
-// }
-
-/*
-* 만료시간 정보를 생성한다 
-*/
-// let getExpiration = () => {
-//     return new Date(Date.now() + expireTime)
-//         .toISOString()
-//         .slice(0, -5);
-// }
-
-// let broadcast = async (operations, extensions=[]) =>{
-// 	let props = await to(getDynamicGlobalProperties());
-// 	let op = makeOperations(prop, operations, extensions);
-
-// // 	[
-// //   "transfer",
-// //   {
-// //     "from": "steemit",
-// //     "to": "alice",
-// //     "amount": {
-// //       "amount": "10",
-// //       "precision": 3,
-// //       "nai": "@@000000021"
-// //     },
-// //     "memo": "Thanks for all the fish."
-// //   }
-// // ]
-
-// 	return send('condenser_api.broadcast_transaction', [op]);
-// }
-
-/*
-* 작업처리를 위한 명령 목록을 만든다
-* @param props 네트워크 설정정보
-* @param operations 수행작업 명령 목록
-* @param extensions 확장 수행목록 (수익자 설정 등)
-*/
-// let makeOperations = (props, operations, extensions=[])=>{
-
-//     let op = {
-//         ref_block_num: props.head_block_number,
-//     		ref_block_prefix: Buffer.from(props.head_block_id, 'hex').readUInt32LE(4),
-//     		expiration: getExpiration(),
-//     		operations: operations,
-//     		extensions: extensions,
-//     }
-
-//     return op;
-// }
 
 /*
 * (오류) : Assert Exception:api_itr != _registered_apis.end(): Could not find API account_history_api

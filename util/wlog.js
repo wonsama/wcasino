@@ -8,6 +8,7 @@ const dateformat = require('dateformat');
 let fn = {};
 
 const WC_ROOT = process.env.WC_ROOT?process.env.WC_ROOT:".";
+const LOG_ROOT = `${WC_ROOT}${SEP}logs${SEP}`;
 const FILE_CHARSET = 'utf-8';
 
 const LOG_FILE_PREFIX = 'yyyymmdd';
@@ -59,7 +60,7 @@ let log = (msg, level=LOG_LEVEL.DEBUG) => {
     let tp = LOG_FOLDER_PREFIX[level-LOG_LEVEL.INFO];
     let date = `${dateformat(new Date(),'yyyymmdd')}`;
     let filename = `${date}.${tp}.log`;
-    let filefolder = `${WC_ROOT}${SEP}${tp}${SEP}`;
+    let filefolder = `${LOG_ROOT}${SEP}${tp}${SEP}`;
     let filepath = `${filefolder}${filename}`;
 
     // 폴더 있는지 여부 확인 및 폴더 생성

@@ -17,7 +17,7 @@ let fn = {};
 */
 fn.saveBlockNumber = async (blockNumber) =>{
 	return new Promise((resolve,reject)=>{
-		fs.writeFile( LAST_BLOCK_FILE, blockNumber.toString(), FILE_CHARSET_UTF8, (err)=>{
+		fs.writeFile( LAST_BLOCK_FILE, blockNumber.toString(), FILE_CHARSET, (err)=>{
 			if(err){
 				reject(err);
 			}else{
@@ -32,7 +32,7 @@ fn.saveBlockNumber = async (blockNumber) =>{
 */
 fn.readBlockNumber = async () =>{
 	return new Promise((resolve,reject)=>{
-		fs.readFile(LAST_BLOCK_FILE, FILE_CHARSET_UTF8, (err,data)=>{
+		fs.readFile(LAST_BLOCK_FILE, FILE_CHARSET, (err,data)=>{
 			if(err){
 				reject(err);
 			}else{
@@ -61,6 +61,75 @@ fn.getLastBlockNumer = async (isHead=true) => {
 	}else{
 		return Promise.reject(err);
 	}
+}
+
+/*
+* 블록 번호, 거래 인덱스 번호 기준으로 operation 정보를 가져온다
+* @param blockNumber 블록번호 
+* @param trxNum 거래번호
+* @return operation 정보
+*/
+fn.getTransaction = async (blockNumber, trxNum) =>{
+
+	let err;
+
+	let block;
+	[err, block] = await to(fn.getBlocks(blockNumber));
+
+	if(!err){
+
+		let b = block[0];
+		let res = {};
+		res.timestamp = b.timestamp;
+		res.operations = b.transactions[trxNum].operations;
+		res.transaction_id = b.transactions[trxNum].transaction_id;
+
+		return Promise.resolve(res);
+	}
+
+	if(err){
+		return Promise.reject(err);
+	}
+}
+
+/*
+* 해당 블록 목록에서 거래 정보를 추출한다
+* @param blocks 블록목록 정보
+* @return 거래정보
+*/
+fn.getTransFromBlock = (blocks) => {
+	let items = [];
+	for(let block of blocks){
+		for(let trans of block.transactions){
+			for(let operation of trans.operations){
+				let item = {};
+				item.timestamp = block.timestamp;
+				item.block_num = trans.block_num;
+				item.transaction_num = trans.transaction_num;
+				item.operation = 	operation;
+				items.push(item);
+			}
+		}
+	}
+
+	return items;
+}
+
+/*
+* 거래 목록 정보를 operation의 type 으로 필터링 처리
+* @param transactions 거래목록정보
+* @param type operations 타입 (처음것만 가지고 필터링함에 유의)
+*/
+fn.filterTransByName = (transactions, type) => {
+	return transactions.filter(x=>{
+		let op = x.operation;
+		let tp = op[0];
+		let data = op[1];
+		if(tp==type){
+			return true;
+		}
+		return false;
+	});
 }
 
 /*
