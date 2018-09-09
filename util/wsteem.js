@@ -42,6 +42,7 @@ const {isItemEmptyMsg} = require('./wstring');
 const WC_API_URI = process.env.WC_API_URI;
 const WC_ME_ACCOUNT = process.env.WC_ME_ACCOUNT;
 const WC_KEY_ACTIVE = process.env.WC_KEY_ACTIVE;
+const WC_KEY_POSTING = process.env.WC_KEY_POSTING;
 
 const EXPIRE_TIME = 60 * 1000; // 유효시간 1분 : 1분안에 처리 안되면 무효됨
 
@@ -176,6 +177,42 @@ let makeOpTransfer = (from_author, to_author, memo="", amount="0.001 SBD")=>{
 			memo : memo
 		}
 	];
+}
+
+let makeOpFollow = (follow, author)=>{
+	// what : blog(팔로우) , ''(언팔로우), ignore(차단)
+	return ["custom_json",{
+		id : 'follow',
+		json : `["follow",{"follower":"${author}","following":"${follow}","what":["blog"]}]`
+	}];
+}
+
+fn.follow = async ( ids ) => {
+	let err;
+
+	// 글로벌 설정 값 로딩 
+	let client = getClient();
+	let props;
+	[err, props] = await to(getProps(client));
+
+	// 송금처리
+	let res;
+	if(!err){
+		let operations = [];
+		for(let id of ids){
+			operations.push( makeOpFollow(from_author, WC_ME_ACCOUNT) );	
+		}
+		
+		let wcKeyEnc = keyEnc(WC_KEY_POSTING);
+		let op = makeOperations(props, operations);
+		let stx = client.broadcast.sign(op, wcKeyEnc);	
+		[err, res] = await to(client.broadcast.send(stx));
+	}
+	
+	if(err){
+		return Promise.reject(err);
+	}
+	return Promise.resolve(res);
 }
 
 /*
