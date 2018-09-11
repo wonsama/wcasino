@@ -1,9 +1,9 @@
+const steem = require('steem');
+
 const {to} = require ('./wutil');					// async
 const {getnumber} = require ('./wnumber');	// change to number
 const {debug, info, error} = require('./wlog');						// log
-
-const steem = require('steem');
-const fs = require('fs');				// Experimental promise, support over v10.
+const {write, read} = require ('./wfile');	// change to number
 
 const FILE_CHARSET = 'utf-8';
 
@@ -16,30 +16,14 @@ let fn = {};
 * 최종 블록 번호를 기록한다 
 */
 fn.saveBlockNumber = async (blockNumber) =>{
-	return new Promise((resolve,reject)=>{
-		fs.writeFile( LAST_BLOCK_FILE, blockNumber.toString(), FILE_CHARSET, (err)=>{
-			if(err){
-				reject(err);
-			}else{
-				resolve();	
-			}
-		});
-	});
+	return write(LAST_BLOCK_FILE, blockNumber.toString());
 }
 
 /*
 * 최종 블록 번호를 읽어들인다
 */
 fn.readBlockNumber = async () =>{
-	return new Promise((resolve,reject)=>{
-		fs.readFile(LAST_BLOCK_FILE, FILE_CHARSET, (err,data)=>{
-			if(err){
-				reject(err);
-			}else{
-				resolve(data);
-			}
-		});
-	});
+	return read(LAST_BLOCK_FILE);
 }
 
 /*

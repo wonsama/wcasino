@@ -182,12 +182,20 @@ let makeOpTransfer = (from_author, to_author, memo="", amount="0.001 SBD")=>{
 let makeOpFollow = (follow, author)=>{
 	// what : blog(팔로우) , ''(언팔로우), ignore(차단)
 	return ["custom_json",{
+		required_auths: [],
+		required_posting_auths: [ author ],
 		id : 'follow',
 		json : `["follow",{"follower":"${author}","following":"${follow}","what":["blog"]}]`
 	}];
 }
 
 fn.follow = async ( ids ) => {
+
+	/* 
+		FOLLOW는 블록당 1번밖에 할 수 없음 ! (custom_json)
+		already submitted a custom json operation this block
+	*/
+
 	let err;
 
 	// 글로벌 설정 값 로딩 
@@ -200,12 +208,13 @@ fn.follow = async ( ids ) => {
 	if(!err){
 		let operations = [];
 		for(let id of ids){
-			operations.push( makeOpFollow(from_author, WC_ME_ACCOUNT) );	
+			operations.push( makeOpFollow(id, WC_ME_ACCOUNT) );	
 		}
 		
 		let wcKeyEnc = keyEnc(WC_KEY_POSTING);
 		let op = makeOperations(props, operations);
 		let stx = client.broadcast.sign(op, wcKeyEnc);	
+
 		[err, res] = await to(client.broadcast.send(stx));
 	}
 	

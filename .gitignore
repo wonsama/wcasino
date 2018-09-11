@@ -64,3 +64,5 @@ test*
 
 .DS_Store
 env.sample
+out.csv
+last_block.txt
