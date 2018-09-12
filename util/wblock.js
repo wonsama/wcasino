@@ -4,13 +4,18 @@ const {to} = require ('./wutil');					// async
 const {getnumber} = require ('./wnumber');	// change to number
 const {debug, info, error} = require('./wlog');						// log
 const {write, read} = require ('./wfile');	// change to number
+const {isIterable} = require('./wutil');
+
+const wlog = require('./wlog');
 
 const FILE_CHARSET = 'utf-8';
 
-const WC_ROOT = process.env.WC_ROOT?process.env.WC_ROOT:".";
-const LAST_BLOCK_FILE = `${WC_ROOT}/last_block.txt`;
+const PROJECT_ROOT = process.env.PROJECT_ROOT?process.env.PROJECT_ROOT:".";
+const LAST_BLOCK_FILE = `${PROJECT_ROOT}/last.block.wc`;
 
 let fn = {};
+
+fn.LAST_BLOCK_FILE = LAST_BLOCK_FILE;
 
 /*
 * 최종 블록 번호를 기록한다 
@@ -83,6 +88,13 @@ fn.getTransaction = async (blockNumber, trxNum) =>{
 */
 fn.getTransFromBlock = (blocks) => {
 	let items = [];
+
+	// isIterable 을 검증 
+	if(!isIterable(blocks)){
+		wlog.error(blocks?JSON.parse(blocks):'blocks is empty');
+		return items;
+	}
+
 	for(let block of blocks){
 		for(let trans of block.transactions){
 			for(let operation of trans.operations){

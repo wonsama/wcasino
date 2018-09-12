@@ -1,6 +1,19 @@
 let fn = {};
 
 /*
+* for .. of 에 활용하기 위함 Iterable 여부를 검증한다
+* @param obj 입력값
+* @return Iterable 여부
+*/
+fn.isIterable = (obj) =>{
+  // checks for null and undefined
+  if (obj == null) {
+    return false;
+  }
+  return typeof obj[Symbol.iterator] === 'function';
+}
+
+/*
 * Promise를 활용하여 잠시 sleep 처리
 * @param ms sleep 하고자 하는 시간 (밀리섹컨)
 */

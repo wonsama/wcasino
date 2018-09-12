@@ -66,3 +66,4 @@ test*
 env.sample
 out.csv
 last_block.txt
+*.wc
