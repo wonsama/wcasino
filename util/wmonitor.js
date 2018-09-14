@@ -10,6 +10,8 @@ let fn = {};
 // 리젝트 사유 e 가 아닌 경우임
 let MSG_REJECT = {same:0};
 
+const BLOCK_MAX_READ = Number(process.env.BLOCK_MAX_READ);
+
 /*
 * 외부용 : 리젝트 사유
 */
@@ -25,6 +27,8 @@ fn.monitor = async (types=['transfer']) =>{
 	let filtered = {};
 
 	let blockStart,blockEnd;
+	let blockArr;
+
 	try{
 		// 1. 기존에 읽어들인 블록정보 로딩
 		// 2. 최신 블록 정보 로딩
@@ -43,11 +47,16 @@ fn.monitor = async (types=['transfer']) =>{
 				return Promise.reject(MSG_REJECT.same);
 			}
 
+			// blockEnd 와 blockStart 차이가 너무 크면 읽다가 오류가 발생함.
+			// MAX_GAP은 약 1000 블록 이상을 넘으면 안됨에 유의 - 네트워크 사정에 따라 다를 수 있음
+			if(blockEnd-blockStart>BLOCK_MAX_READ){
+				wlog.warn(`current block gap is [${blockEnd-blockStart}] block will read ${BLOCK_MAX_READ} blocks.`);
+				blockEnd =	blockStart + BLOCK_MAX_READ;
+			}
+
 			// 블록 정보 로딩
 			[err,blockArr] = await to(wblock.getBlocks(blockStart, blockEnd));
-			console.log();
 			wlog.info(`block : ${blockStart}~${blockEnd}`);
-			console.log();
 
 			// 블록 정보에서 트렌젝션 정보를 로드
 			let trans = wblock.getTransFromBlock(blockArr);
@@ -56,8 +65,12 @@ fn.monitor = async (types=['transfer']) =>{
 				filtered[type] = wblock.filterTransByName(trans, type);
 			}
 
-			// 마지막으로 읽어들인 블록 정보를 갱신한다
-			wblock.saveBlockNumber(blockEnd);
+			// 가끔 블록 정보를 읽지 못하는 오류 발생 이런 경우는 다시 읽기 위해 블록 정보를 기록하지 않음
+			if(trans.length>0){
+				// 마지막으로 읽어들인 블록 정보를 갱신한다
+				wblock.saveBlockNumber(blockEnd);		
+			}
+			
 		}
 
 	}catch(e){

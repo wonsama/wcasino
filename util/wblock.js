@@ -11,7 +11,7 @@ const wlog = require('./wlog');
 const FILE_CHARSET = 'utf-8';
 
 const PROJECT_ROOT = process.env.PROJECT_ROOT?process.env.PROJECT_ROOT:".";
-const LAST_BLOCK_FILE = `${PROJECT_ROOT}/last.block.wc`;
+const LAST_BLOCK_FILE = `${PROJECT_ROOT}/config/last.block.wc`;
 
 let fn = {};
 

@@ -67,3 +67,4 @@ env.sample
 out.csv
 last_block.txt
 *.wc
+monster.json

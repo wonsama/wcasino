@@ -11,7 +11,7 @@
 
     - 거래 정보 모니터링(계정명:wcasino.holdem), 유저들은(계정명:wcasino.holdem)로 송금을 해야 된다(1 STEEM + )
     - 블록 정보 로딩(last.block.wc)~최신블록
-    - transfer에서 유효금액(1.000 STEEM + memo : join)이 아닌경우 자동환불 (0.001은 제외)
+    - transfer에서 유효금액(1.000 STEEM + memo : join)이 아닌경우 자동환불 (0.001은 제외)(holdem.refunt.yyyymmdd.wc)
     - 거래정보 기록 append (holdem.trans.yyyymmdd.wc) {block_id, trx_id, timestamp, from}
     - 작업처리 정보 기록 append (holdem.pending.wc) {block_id, trx_id, timestamp, from, game}
     - 읽어 들인 후 작업 처리가 성공적으로 이뤄지면 마지막 읽어들인 블록정보(최신블록) 기록 (last.block.wc)

@@ -40,6 +40,9 @@ fn.makeFolder = (path) =>{
 fn.isExist = (path) =>{
 	return fs.existsSync(path);
 }
+fn.isNotExist = (path) =>{
+	return !fn.isExist(path);
+}
 
 /*
 * @param path 파일 경로

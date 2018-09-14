@@ -2,12 +2,10 @@ let fn = {};
 
 const dateformat = require('dateformat');
 
-const wlog = require('./wlog');
-const wfile = require('./wfile');
-
-const wsteem = require('./wsteem');
-
-const {sleep} = require('./wutil');
+const wlog = require('../util/wlog');
+const wfile = require('../util/wfile');
+const wsteem = require('../util/wsteem');
+const {sleep} = require('../util/wutil');
 
 const SEP = require('path').sep;
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
@@ -16,8 +14,7 @@ const WC_FILE_ROOT = PROJECT_ROOT+WC_FOLDER+SEP;
 const WC_HOLDEM_AC = process.env.WC_HOLDEM_AC;
 const WC_HOLDEM_MEMO = process.env.WC_HOLDEM_MEMO;
 const WC_HOLDEM_PRICE = process.env.WC_HOLDEM_PRICE;
-const WC_TRANS_SLEEP = process.env.WC_TRANS_SLEEP;
-
+const WC_TRANS_SLEEP = Number(process.env.WC_TRANS_SLEEP);
 
 const IGNORE_NUM = 0.001;
 
