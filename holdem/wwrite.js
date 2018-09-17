@@ -20,6 +20,7 @@ const WC_JACKPOT_AC = process.env.WC_JACKPOT_AC;
 
 const WC_HOLDEM_MEMO = process.env.WC_HOLDEM_MEMO;
 const WC_HOLDEM_PRICE = process.env.WC_HOLDEM_PRICE;
+const WC_HOLDEM_TYPE = process.env.WC_HOLDEM_TYPE;
 const WC_HOLDEM_KEY_POSTING = process.env.WC_HOLDEM_KEY_POSTING;
 const WC_HOLDEM_AC = process.env.WC_HOLDEM_AC;
 const WC_HOLDEM_NEXT_MIN = Number(process.env.WC_HOLDEM_NEXT_MIN);
@@ -100,7 +101,7 @@ fn.roundEnd = async () =>{
 	body.push(`${deck}`);
 	body.push(`\`\`\``);
 	body.push(``);
-	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE.replace(' ','%20')}&memo=${WC_HOLDEM_MEMO})`);
+	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	body.push(`Testing now ! don't transfer steem !`);
 	body.push(``);
 	body.push(`---`);
@@ -135,9 +136,8 @@ fn.roundEnd = async () =>{
 	body.push(``);
 	body.push('---');
 
-	const PRIZE_AMT = getAmount(WC_HOLDEM_PRICE).num * CARD_MAX_DRAW;
-	const PRIZE_TP = getAmount(WC_HOLDEM_PRICE).tp;
-	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${PRIZE_TP}`);
+	const PRIZE_AMT = Number(WC_HOLDEM_PRICE) * CARD_MAX_DRAW;
+	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`);
 	let isRoyal = rankers[0].jokboe=='ROYAL_STRAIGHT_FLASH'?true:false;
 	let isSeven = rankers[0].value.indexOf('7')>=0?true:false;
 	let prize = [PRIZE_AMT*0.5, PRIZE_AMT*0.3, PRIZE_AMT*0.1];
@@ -152,16 +152,16 @@ fn.roundEnd = async () =>{
 		bonus = balance;
 		message = `+ you got bonus 100% of jackpot (${bonus})`
 	}
-	body.push(`1 st ${rankers[0].name} : ${prize[0].toFixed(3)} ${PRIZE_TP} ${message}`);
-	body.push(`2 nd ${rankers[1].name} : ${prize[1].toFixed(3)} ${PRIZE_TP}`);
-	body.push(`3 rd ${rankers[2].name} : ${prize[2].toFixed(3)} ${PRIZE_TP}`);
+	body.push(`1 st ${rankers[0].name} : ${prize[0].toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} ${message}`);
+	body.push(`2 nd ${rankers[1].name} : ${prize[1].toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`);
+	body.push(`3 rd ${rankers[2].name} : ${prize[2].toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`);
 	body.push('---');
 
 	// 1~3 등 : 송금 처리를 수행한다
 	for(let i=0;i<3;i++){
 		let name = rankers[i].name.replace('@','');
 		let tmsg = `Congratulations @${name} ! you got ${rank[i]} prize of holdem round ${round}.`;
-		await wtransfer.sendFromHoldem(name, `${prize[i].toFixed(3)} ${PRIZE_TP}`, tmsg);
+		await wtransfer.sendFromHoldem(name, `${prize[i].toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`, tmsg);
 		wlog.info(tmsg);
 		await sleep(WC_TRANS_SLEEP);	// 송금 후 3초간 쉰다
 	}
@@ -171,20 +171,20 @@ fn.roundEnd = async () =>{
 		// jackpot 금액 송금
 		let name = rankers[0].name.replace('@','');
 		let tmsg = `Congratulations ! ${message}`;
-		await wtransfer.sendFromJackpot(name, `${bonus.toFixed(3)} ${PRIZE_TP}`, tmsg);
+		await wtransfer.sendFromJackpot(name, `${bonus.toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`, tmsg);
 		wlog.info(tmsg);
 		await sleep(WC_TRANS_SLEEP);	// 송금 후 3초간 쉰다
 	}	
 
 	// 5% 젝팟 : 젝팟계정 송금처리
 	let jmsg = `Round ${round} jackpot money transfer.`;
-	await wtransfer.sendFromHoldem(WC_JACKPOT_AC, `${(PRIZE_AMT*0.05).toFixed(3)} ${PRIZE_TP}`, jmsg);
+	await wtransfer.sendFromHoldem(WC_JACKPOT_AC, `${(PRIZE_AMT*0.05).toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`, jmsg);
 	wlog.info(jmsg);
 	
 	// 나머지 : Holdem 계정의 잔금을 조회한 후 pay 계정으로 보낸다
 	let hbalance = await getSteem(WC_HOLDEM_AC);	// holdem 계정의 스팀 잔액을 반환한다
 	let pmsg = `Round ${round} remain money transfer.`;
-	await wtransfer.sendFromHoldem(WC_PAY_AC, `${hbalance.toFixed(3)} ${PRIZE_TP}`, pmsg);
+	await wtransfer.sendFromHoldem(WC_PAY_AC, `${hbalance.toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`, pmsg);
 	wlog.info(pmsg);
 	
 	// 시간정보
@@ -194,7 +194,7 @@ fn.roundEnd = async () =>{
 
 	body.push(``);
 	body.push(`next round will open at ${ndate.toJSON()} !`)
-	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE.replace(' ','%20')}&memo=${WC_HOLDEM_MEMO})`);
+	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	body.push(`Testing now ! don't transfer steem !`);
 	body.push(``);
 	body.push(`---`);
@@ -270,15 +270,13 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`Current joined ${joins.length}/${CARD_MAX_DRAW} users.`);
 	body.push(``);
-	body.push(`[JOIN HOLDEM NOW ( needs ${WC_HOLDEM_PRICE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE.replace(' ','%20')}&memo=${WC_HOLDEM_MEMO})`);
+	body.push(`[JOIN HOLDEM NOW ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	body.push(`Testing now ! don't transfer steem !`);
 
 	let sendMessage = await steem.broadcast.commentAsync(
 		WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
 		permlink, title, body.join('\n'), jsonMetadata
 	);
-
-
 
 	let completeMessage = `Round ${round} ( ${joins.length}/${CARD_MAX_DRAW} ) contents is update : see at https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`;
 	wlog.info(completeMessage);

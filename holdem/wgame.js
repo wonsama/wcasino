@@ -12,6 +12,7 @@ const wwrite = require('./wwrite');
 
 // 기타 상수
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
+const WC_CONFIG_FOLDER = `${PROJECT_ROOT}/config`;
 const WC_LOG_FOLDER = `${PROJECT_ROOT}/logs/wc`;
 const WC_ROUND_FOLDER = `${PROJECT_ROOT}/logs/round`;
 const WC_PENDING_FILE = `${PROJECT_ROOT}/config/holdem.pending.wc`;
@@ -130,6 +131,9 @@ fn.joinGame = async (pen, round) =>{
 * 초기 1회 파일 또는 기본 폴더가 없는 경우에만 수행하면 됨
 */
 fn.initFirst = async ()=>{
+
+	// config : 설정 파일 정보 폴더 생성
+	wfile.makeFolder(WC_CONFIG_FOLDER);
 
 	// last.block.wc : 최종 읽어들인 블록정보 
 	if(wfile.isNotExist(LAST_BLOCK_FILE)){

@@ -16,6 +16,7 @@ const WC_HOLDEM_AC = process.env.WC_HOLDEM_AC;
 const WC_HOLDEM_KEY_ACTIVE = process.env.WC_HOLDEM_KEY_ACTIVE;
 const WC_HOLDEM_MEMO = process.env.WC_HOLDEM_MEMO;
 const WC_HOLDEM_PRICE = process.env.WC_HOLDEM_PRICE;
+const WC_HOLDEM_TYPE = process.env.WC_HOLDEM_TYPE;
 const WC_TRANS_SLEEP = Number(process.env.WC_TRANS_SLEEP);
 
 const WC_JACKPOT_AC = process.env.WC_JACKPOT_AC;
@@ -92,11 +93,10 @@ fn.getTransfers = (filtered) =>{
 * @return 환불 대상목록정보
 */
 fn.getRefunds = (transfers) =>{
-	let price = wsteem.getAmount(WC_HOLDEM_PRICE).num;
 	return transfers.filter(x=>{
 		let op = x.operation[1];
 		let num = wsteem.getAmount(op.amount).num;
-		if(num!=IGNORE_NUM && (num!=price || op.memo!=WC_HOLDEM_MEMO)){
+		if(num!=IGNORE_NUM && (num!=Number(WC_HOLDEM_PRICE) || op.memo!=WC_HOLDEM_MEMO)){
 			return true;
 		}
 		return false;
@@ -113,7 +113,7 @@ fn.doRefunds = async (refunds) =>{
 	for(let refund of refunds){
 		let op = refund.operation[1];
 		try{
-			let tr = await fn.sendFromHoldem(op.from, op.amount, `refund : wcasino holdem needs ${WC_HOLDEM_PRICE} and memo : ${WC_HOLDEM_MEMO}`);
+			let tr = await fn.sendFromHoldem(op.from, op.amount, `refund : wcasino holdem needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} and memo : ${WC_HOLDEM_MEMO}`);
 			await sleep(WC_TRANS_SLEEP);
 
 			let msg = JSON.stringify({
@@ -169,11 +169,10 @@ fn.sendJoinInfo = async (step, pen, round, c) =>{
 * @return 게임 대상목록정보
 */
 fn.getGames = (transfers) =>{
-	let price = wsteem.getAmount(WC_HOLDEM_PRICE).num;
 	return transfers.filter(x=>{
 		let op = x.operation[1];
 		let num = wsteem.getAmount(op.amount).num;
-		if(num==price && op.memo==WC_HOLDEM_MEMO){
+		if(num==Number(WC_HOLDEM_PRICE) && op.memo==WC_HOLDEM_MEMO){
 			return true;
 		}
 		return false;
