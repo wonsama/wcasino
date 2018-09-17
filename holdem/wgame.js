@@ -135,6 +135,9 @@ fn.initFirst = async ()=>{
 	// config : 설정 파일 정보 폴더 생성
 	wfile.makeFolder(WC_CONFIG_FOLDER);
 
+	// WC_ROUND_FOLDER : 생성
+	wfile.makeFolder(WC_ROUND_FOLDER);
+
 	// last.block.wc : 최종 읽어들인 블록정보 
 	if(wfile.isNotExist(LAST_BLOCK_FILE)){
 		await wfile.write(LAST_BLOCK_FILE, '0');
@@ -160,8 +163,7 @@ fn.initFirst = async ()=>{
 		await fn.newGame();
 	}
 
-	// WC_ROUND_FOLDER : 생성
-	wfile.makeFolder(WC_ROUND_FOLDER);
+	
 }
 
 /*
