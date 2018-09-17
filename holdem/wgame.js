@@ -7,6 +7,8 @@ const wfile = require('../util/wfile');
 const wlog = require('../util/wlog');
 const {sha256} = require('../util/wcrypto');
 const wcard = require('./wcard');
+const wtransfer = require('./wtransfer');
+const wwrite = require('./wwrite');
 
 // 기타 상수
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
@@ -61,20 +63,77 @@ fn.isGameEnd = async ()=>{
 /*
 * 게임에 조인한다 
 * @param pen 대기열 맨 위에 있는 단건
+* @param round 현재 라운드 정보
 * @return 게임 종료 여부
 */
-fn.joinGame = (pen) =>{
+fn.joinGame = async (pen, round) =>{
+	// join 정보를 읽어 최대 수치를 넘었나 확인
+	let cards = JSON.parse(await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.cards.wc`));
+	let joins = JSON.parse(await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`));
+	let idx = joins.length;
 
+	let c = cards[idx];
+	if(idx<CARD_MAX_DRAW){
+		joins.push({
+			timestamp : pen.timestamp,
+			block_num : pen.block_num,
+			transaction_num : pen.transaction_num,
+			from : pen.from,
+			cards : c
+		});
+		// 참여 기록정보 추가처리
+		await wfile.write(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`, JSON.stringify(joins));
+
+		// 대기 기록정보에서 제거처리
+		let pending = JSON.parse(await wfile.read(WC_PENDING_FILE));
+		let filtered = pending.filter(x=>!(x.block_num==pen.block_num && x.transaction_num==pen.transaction_num && x.from==pen.from));
+		await wfile.write(WC_PENDING_FILE, JSON.stringify(filtered));
+
+		// 송금자에게 게임에 조인되었다고 알려주기 메모 전송
+		await wtransfer.sendJoinInfo(`${joins.length}/${CARD_MAX_DRAW}`, pen, round, c);
+
+		// 라운드 종료 여부 반환
+		if(joins.length==CARD_MAX_DRAW){
+
+			// 딜러 정보 추가
+			joins.push({
+				timestamp : new Date().toJSON(),
+				block_num : 0,
+				transaction_num : 0,
+				from : `wcasino.jackpot`,
+				cards : cards[CARD_MAX_DRAW]
+			});
+
+			// 참여 기록정보 추가처리
+			await wfile.write(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`, JSON.stringify(joins));
+
+			// 계정에 종료 메시지 업데이트
+			await wwrite.roundEnd();
+
+			// 신규 게임을 생성한다 : 순환 참조가 발생하면 안되므로 wwrite 내부에서 처리하면 안됨에 유의한다.
+			await fn.newGame();
+
+			return Promise.resolve(true);
+		}else{
+			// 계정에 글쓰기 업데이트
+			await wwrite.update();
+			return Promise.resolve(false);
+		}
+	}
+	// else 구문에서 로깅하면 N 번 출력하므로 하지 않는다.
+	// 게잉 종료(CARD_MAX_DRAW) 시 시간 정보(NEXT)를 업데이트 하도록하자 !
+
+	return Promise.resolve(true);
 }
 
 /*
 * 초기 1회 파일 또는 기본 폴더가 없는 경우에만 수행하면 됨
 */
-fn.initFirst = ()=>{
+fn.initFirst = async ()=>{
 
 	// last.block.wc : 최종 읽어들인 블록정보 
 	if(wfile.isNotExist(LAST_BLOCK_FILE)){
-		wfile.write(LAST_BLOCK_FILE, '0');
+		await wfile.write(LAST_BLOCK_FILE, '0');
 	}
 
 	// logs/wc : 각종 처리 정보 로깅 폴더
@@ -82,19 +141,19 @@ fn.initFirst = ()=>{
 
 	// WC_PENDING_FILE : 생성
 	if(wfile.isNotExist(WC_PENDING_FILE)){
-		wfile.write(WC_PENDING_FILE, JSON.stringify([]));
+		await wfile.write(WC_PENDING_FILE, JSON.stringify([]));
 	}
 
 	// WC_ROUND_NEXT : 다음게임 시작시간, 지났으면 현재 라운드 진행중이라는 뜻임
 	if(wfile.isNotExist(WC_ROUND_NEXT)){
-		wfile.write(WC_ROUND_NEXT, new Date().toJSON());
+		await wfile.write(WC_ROUND_NEXT, new Date().toJSON());
 	}
 
 	// holdem.round.wc : 현재 라운드 정보
 	if(wfile.isNotExist(WC_ROUND_FILE)){
-		wfile.write(WC_ROUND_FILE, 1);
+		await wfile.write(WC_ROUND_FILE, 1);
 		// 신규게임 생성
-		fn.newGame();
+		await fn.newGame();
 	}
 
 	// WC_ROUND_FOLDER : 생성
@@ -161,8 +220,8 @@ fn.newGame = async () =>{
 	// holdem.round.xxx.deck.wc : 섞인 카드 목록
 	// holdem.round.xxx.sha256.wc : 위 정보를 sha256으로 변환한 것
 	// 앞에 round 및 게임 시작시간을 붙여서 추측 불가 형태로 만들어주도록 함
-	let next = new Date().toJSON();
-	let cardsStr = `${round}, ${next}, ${cardToString(cards)}`;
+	let now = new Date().toJSON();
+	let cardsStr = `${round}, ${now}, ${cardToString(cards)}`;
 	await wfile.write(`${WC_ROUND_FOLDER}/holdem.round.${round}.deck.wc`, cardsStr);
 	await wfile.write(`${WC_ROUND_FOLDER}/holdem.round.${round}.sha256.wc`, sha256(cardsStr));
 	
@@ -180,9 +239,6 @@ fn.newGame = async () =>{
 
 	// holdem.round.xxx.join.wc : 해당 라운드 게임 플레이어 join 정보 
 	await wfile.write(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`, JSON.stringify([]));	
-
-	// 다음라운드 시작 시간정보 업데이트 (신규 게임이 시작하면 현재 시간을 설정하면 된다)
-	await wfile.write(WC_ROUND_NEXT, next);
 
 	wlog.info(`new game created.`);	
 }

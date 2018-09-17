@@ -1,5 +1,6 @@
 let fn = {};
 
+const steem = require('steem');
 const dateformat = require('dateformat');
 
 const wlog = require('../util/wlog');
@@ -12,11 +13,35 @@ const PROJECT_ROOT = process.env.PROJECT_ROOT;
 const WC_FOLDER = process.env.WC_FOLDER;
 const WC_FILE_ROOT = PROJECT_ROOT+WC_FOLDER+SEP;
 const WC_HOLDEM_AC = process.env.WC_HOLDEM_AC;
+const WC_HOLDEM_KEY_ACTIVE = process.env.WC_HOLDEM_KEY_ACTIVE;
 const WC_HOLDEM_MEMO = process.env.WC_HOLDEM_MEMO;
 const WC_HOLDEM_PRICE = process.env.WC_HOLDEM_PRICE;
 const WC_TRANS_SLEEP = Number(process.env.WC_TRANS_SLEEP);
 
+const WC_JACKPOT_AC = process.env.WC_JACKPOT_AC;
+const WC_JACKPOT_KEY_ACTIVE = process.env.WC_JACKPOT_KEY_ACTIVE;
+
 const IGNORE_NUM = 0.001;
+
+/*
+* 홀덤 계정에서 송금처리
+* @param author 계정명 
+* @param amount 금액 ex) 0.002 STEEM
+* @param memo 메모
+*/
+fn.sendFromHoldem = async (author, amount, memo) =>{
+	return steem.broadcast.transferAsync(WC_HOLDEM_KEY_ACTIVE, WC_HOLDEM_AC, author, amount, memo);
+}
+
+/*
+* 젝팟 계정에서 송금처리
+* @param author 계정명 
+* @param amount 금액 ex) 0.002 STEEM
+* @param memo 메모
+*/
+fn.sendFromJackpot = async (author, amount, memo) =>{
+	return steem.broadcast.transferAsync(WC_JACKPOT_KEY_ACTIVE, WC_JACKPOT_AC, author, amount, memo);
+}
 
 /*
 * WC_HOLDEM_AC 계정으로 송금 받은 정보를 파일에 날짜별로 기록하며 필터링 한다.
@@ -88,7 +113,7 @@ fn.doRefunds = async (refunds) =>{
 	for(let refund of refunds){
 		let op = refund.operation[1];
 		try{
-			let tr = await wsteem.refund(op.from, op.amount, `refund : wcasino holdem needs ${WC_HOLDEM_PRICE} and memo : play`);
+			let tr = await fn.sendFromHoldem(op.from, op.amount, `refund : wcasino holdem needs ${WC_HOLDEM_PRICE} and memo : ${WC_HOLDEM_MEMO}`);
 			await sleep(WC_TRANS_SLEEP);
 
 			let msg = JSON.stringify({
@@ -115,6 +140,26 @@ fn.doRefunds = async (refunds) =>{
 
 	// 무조건 정상 처리, 자세한 건 로그를 보도록 한다.
 	// 환불 안되면 뭐 수동으로 하지 -0-
+	return Promise.resolve();
+}
+
+/*
+* JOIN 환영 메시지 및 카드 정보 전송
+* @param step 몇번째로 들어왔나
+* @param pen 대기자 정보
+* @param c 카드정보
+*/ 
+fn.sendJoinInfo = async (step, pen, round, c) =>{
+	
+	let sendMsg = `@${pen.from} is joined holdem round ${round} ( ${step} ), your card is ${c[3].value}, ${c[4].value} ::: tranfer info ( block_num : ${pen.block_num}, transaction_num : ${pen.transaction_num} )`;
+	try{
+		let tr = await fn.sendFromHoldem(pen.from, `0.001 STEEM`, sendMsg);
+		wlog.info(sendMsg);
+	}catch(e){
+		wlog.error(e.stack);
+	}
+	
+	// 무조건 정상 처리, 자세한 건 로그를 보도록 한다.
 	return Promise.resolve();
 }
 

@@ -161,6 +161,35 @@ let fnMaxType = (clone) =>{
 	return max;
 }
 
+/*
+* 참여자 정보에서 랭커 정보를 반환한다
+* @param joins 참여자 정보
+* @param count 추출할 순위
+* @return 랭커정보 (count 개)
+*/
+fn.getRanker = (joins, count=3) =>{
+	let idx = 0;
+	let players = [];
+	for(let card5 of joins){
+		let {from, cards} = card5;
+		let jb = fn.jokboCards(cards, `@${from}`, idx+1 );	
+		players.push(jb);
+		idx++;
+	}
+	players.sort((a,b)=>{
+		if(a.jokbo==b.jokbo){
+			return fn.sortFilterWhenSame(a, b);
+		}else{
+			return b.jokbo - a.jokbo;		
+		}
+	});
+
+	return players.slice(0,count);
+}
+
+/*
+* 족보가 같은 경우 숫자 => 스다하클 순서로 필터링 처리한다
+*/
 fn.sortFilterWhenSame = (a, b)=>{
 	
 	// 족보가 동일한 항목에 대해 확인
@@ -254,6 +283,13 @@ let fnGroupNumbers = (clone) =>{
 	return ocByNum;
 }
 
+/*
+* 카드 족보를 기록하여 반환한다
+* @param cards 카드목록
+* @param name 참여자 이름
+* @param idx 참여자 인덱스
+* @return 족보가 포함된 참여정보
+*/
 fn.jokboCards = (cards, name, idx) =>{
 
 	/*
