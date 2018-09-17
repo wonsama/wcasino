@@ -152,16 +152,16 @@ fn.roundEnd = async () =>{
 		bonus = balance;
 		message = `+ you got bonus 100% of jackpot (${bonus})`
 	}
-	body.push(`1 st ${rankers[0].name} : ${prize[0].toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} ${message}`);
-	body.push(`2 nd ${rankers[1].name} : ${prize[1].toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`);
-	body.push(`3 rd ${rankers[2].name} : ${prize[2].toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`);
+	body.push(`1 st ${rankers[0].name} : ${prize[0].toFixed(3)} ${WC_HOLDEM_TYPE}  ${message}`);
+	body.push(`2 nd ${rankers[1].name} : ${prize[1].toFixed(3)} ${WC_HOLDEM_TYPE}`);
+	body.push(`3 rd ${rankers[2].name} : ${prize[2].toFixed(3)} ${WC_HOLDEM_TYPE}`);
 	body.push('---');
 
 	// 1~3 등 : 송금 처리를 수행한다
 	for(let i=0;i<3;i++){
 		let name = rankers[i].name.replace('@','');
 		let tmsg = `Congratulations @${name} ! you got ${rank[i]} prize of holdem round ${round}.`;
-		await wtransfer.sendFromHoldem(name, `${prize[i].toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`, tmsg);
+		await wtransfer.sendFromHoldem(name, `${prize[i].toFixed(3)} ${WC_HOLDEM_TYPE}`, tmsg);
 		wlog.info(tmsg);
 		await sleep(WC_TRANS_SLEEP);	// 송금 후 3초간 쉰다
 	}
@@ -171,20 +171,20 @@ fn.roundEnd = async () =>{
 		// jackpot 금액 송금
 		let name = rankers[0].name.replace('@','');
 		let tmsg = `Congratulations ! ${message}`;
-		await wtransfer.sendFromJackpot(name, `${bonus.toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`, tmsg);
+		await wtransfer.sendFromJackpot(name, `${bonus.toFixed(3)} ${WC_HOLDEM_TYPE}`, tmsg);
 		wlog.info(tmsg);
 		await sleep(WC_TRANS_SLEEP);	// 송금 후 3초간 쉰다
 	}	
 
 	// 5% 젝팟 : 젝팟계정 송금처리
 	let jmsg = `Round ${round} jackpot money transfer.`;
-	await wtransfer.sendFromHoldem(WC_JACKPOT_AC, `${(PRIZE_AMT*0.05).toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`, jmsg);
+	await wtransfer.sendFromHoldem(WC_JACKPOT_AC, `${(PRIZE_AMT*0.05).toFixed(3)} ${WC_HOLDEM_TYPE}`, jmsg);
 	wlog.info(jmsg);
 	
 	// 나머지 : Holdem 계정의 잔금을 조회한 후 pay 계정으로 보낸다
 	let hbalance = await getSteem(WC_HOLDEM_AC);	// holdem 계정의 스팀 잔액을 반환한다
 	let pmsg = `Round ${round} remain money transfer.`;
-	await wtransfer.sendFromHoldem(WC_PAY_AC, `${hbalance.toFixed(3)} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`, pmsg);
+	await wtransfer.sendFromHoldem(WC_PAY_AC, `${hbalance.toFixed(3)} ${WC_HOLDEM_TYPE}`, pmsg);
 	wlog.info(pmsg);
 	
 	// 시간정보
