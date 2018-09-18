@@ -195,7 +195,7 @@ fn.roundEnd = async () =>{
 	body.push(``);
 	body.push(`next round will open at ${ndate.toJSON()} !`)
 	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
-	body.push(`Testing now ! don't transfer steem !`);
+	// body.push(`Testing now ! don't transfer steem !`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
@@ -262,7 +262,8 @@ fn.update = async ()=>{
 
 	let no = 1;
 	for(let j of joins){
-		body.push(`|${no}|${j.from}|${j.cards[3].value}|${j.cards[4].value}|${j.timestamp}|`);
+		// body.push(`|${no}|${j.from}|${j.cards[3].value}|${j.cards[4].value}|${j.timestamp}|`);
+		body.push(`|${no}|${j.from}|${j.cards[3].value}|???|${j.timestamp}|`);
 		no++;
 	}
 	body.push(``);
@@ -271,7 +272,7 @@ fn.update = async ()=>{
 	body.push(`Current joined ${joins.length}/${CARD_MAX_DRAW} users.`);
 	body.push(``);
 	body.push(`[JOIN HOLDEM NOW ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
-	body.push(`Testing now ! don't transfer steem !`);
+	// body.push(`Testing now ! don't transfer steem !`);
 
 	let sendMessage = await steem.broadcast.commentAsync(
 		WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 

@@ -95,17 +95,30 @@ fn.getTransFromBlock = (blocks) => {
 		return items;
 	}
 
+	let idx = 1;
+	let previous = null;	// 이전 블록의 아이디 값
+	let block_id = null;	// 이전 블록의 아이디
 	for(let block of blocks){
-		for(let trans of block.transactions){
-			for(let operation of trans.operations){
-				let item = {};
-				item.timestamp = block.timestamp;
-				item.block_num = trans.block_num;
-				item.transaction_num = trans.transaction_num;
-				item.operation = 	operation;
-				items.push(item);
+		if(block==null){
+			// 블록이 null 정보가 설정되어 내려오는 경우 어떻게 처리할 방법이 딱히 없음
+			// 일단 이전 블록의 참조 정보를 설정함.
+			// 그리고 로깅을 남겨 향후 필요시 참조하여 설정하도록 처리
+			wlog.error(`block (${idx}/${blocks.length}) is null (getTransFromBlock) : previous[ ${previous} ], block_id[ ${block_id} ]`);
+		}else{
+			for(let trans of block.transactions){
+				for(let operation of trans.operations){
+					let item = {};
+					item.timestamp = block.timestamp;
+					item.block_num = trans.block_num;
+					item.transaction_num = trans.transaction_num;
+					item.operation = 	operation;
+					items.push(item);
+				}
 			}
 		}
+		previous = block==null?null:block.previous;
+		block_id = block==null?null:block.block_id;
+		idx++;
 	}
 
 	return items;
