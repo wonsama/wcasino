@@ -4,6 +4,8 @@ let fn = {};
 
 // 프랑스식(한국) 스>다>하>클, 미국은 스>하>다>클
 // see : http://koreabettingnews.com/casino/%ED%8F%AC%EC%BB%A4-%EC%A1%B1%EB%B3%B4%EC%99%80-%EC%9A%A9%EC%96%B4-%EC%97%90-%EB%8C%80%ED%95%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90/
+// 족보 룰
+// https://m.blog.naver.com/PostView.nhn?blogId=josoblue&logNo=220817060229&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F
 
 /*
 * 카드 타입 정보
