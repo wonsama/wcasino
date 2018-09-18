@@ -217,7 +217,7 @@ fn.getPending = async () =>{
 fn.newGame = async () =>{
 
 	// 라운드 정보 로딩
-	let round = await wfile.read(WC_ROUND_FILE);
+	let round = Number(await wfile.read(WC_ROUND_FILE));
 
 	// 전체 카드를 가져와서 섞음
 	let cards = wcard.makeDeck();

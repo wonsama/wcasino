@@ -223,7 +223,7 @@ fn.update = async ()=>{
 	let balance = await getSteem(WC_JACKPOT_AC);	// jackpot 계정의 스팀 잔액을 반환한다
 
 	// 라운드+참여 정보 로딩	
-	let round = await wfile.read(WC_ROUND_FILE);
+	let round = Number(await wfile.read(WC_ROUND_FILE));
 	let hashcode = await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.sha256.wc`);
 	let joins = JSON.parse(await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`));
 
