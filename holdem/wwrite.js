@@ -75,7 +75,7 @@ fn.roundEnd = async () =>{
 	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is ${balance} STEEM`);
 	body.push(`</center>`);
 	body.push(``);
-	body.push(`# holdem ${round} st round `);
+	body.push(`# holdem ${round} th round `);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
@@ -127,7 +127,7 @@ fn.roundEnd = async () =>{
 	body.push('Congratulations !');
 	body.push('---');
 	for(let r of rankers){
-		body.push(`${idx>=3?(idx+1)+'th':rank[idx]} : [${r.idx}] ${r.name} ${r.valuec} ${r.jokboe}`);
+		body.push(`${idx>=3?(idx+1)+'th':rank[idx]} : [${r.idx}] ${r.name} ${r.jokboe} ${wcard.getNums(r)} ${r.valuec} `);
 		idx++;
 		if(idx == 3){
 			body.push('---');
@@ -137,20 +137,40 @@ fn.roundEnd = async () =>{
 	body.push('---');
 
 	const PRIZE_AMT = Number(WC_HOLDEM_PRICE) * CARD_MAX_DRAW;
-	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${WC_HOLDEM_TYPE}`);
-	let isRoyal = rankers[0].jokboe=='ROYAL_STRAIGHT_FLASH'?true:false;
-	let isSeven = rankers[0].value.indexOf('7')>=0?true:false;
+	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`);
+	let isRSF = rankers[0].jokboe=='ROYAL_STRAIGHT_FLASH'?true:false;		// 100%
+	let isSF = rankers[0].jokboe=='STRAIGHT_FLASH'?true:false;					// 10%
+	let isFC = rankers[0].jokboe=='FOUR_CARD'?true:false;							// 5%
+	let isFH = rankers[0].jokboe=='FULL_HOUSE'?true:false;							// 1%
+	// let isSeven = rankers[0].value.indexOf('7')>=0?true:false;
 	let prize = [PRIZE_AMT*0.5, PRIZE_AMT*0.3, PRIZE_AMT*0.1];
+
+	// JACKPOT BOUNS
+	// STRAIGHT_FLASH : 10%
+	// FOUR_CARD : 5%
+	// FULL_HOUSE : 1%
 
 	let message = ``;
 	let bonus = 0;	// jackpot 계정에서 송금해야 되는 금액
-	if(isSeven){
-		bonus = balance*0.07;
-		message = `+ you got bonus 7% of jackpot (${bonus})`
-	}
-	if(isRoyal){
+	// if(isSeven){
+	// 	bonus = balance*0.07;
+	// 	message = `+ you got bonus 7% of jackpot (${bonus})`
+	// }
+	if(isRSF){
 		bonus = balance;
 		message = `+ you got bonus 100% of jackpot (${bonus})`
+	}
+	else if(isSF){
+		bonus = Number((balance * 0.10).toFixed(3));
+		message = `+ you got bonus 10% of jackpot (${bonus})`
+	}
+	else if(isFC){
+		bonus = Number((balance * 0.05).toFixed(3));
+		message = `+ you got bonus 5% of jackpot (${bonus})`
+	}
+	else if(isFH){
+		bonus = Number((balance * 0.01).toFixed(3));
+		message = `+ you got bonus 1% of jackpot (${bonus})`
 	}
 	body.push(`1 st ${rankers[0].name} : ${prize[0].toFixed(3)} ${WC_HOLDEM_TYPE}  ${message}`);
 	body.push(`2 nd ${rankers[1].name} : ${prize[1].toFixed(3)} ${WC_HOLDEM_TYPE}`);
@@ -249,7 +269,7 @@ fn.update = async ()=>{
 	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is ${balance} STEEM`);
 	body.push(`</center>`);
 	body.push(``);
-	body.push(`# holdem ${round} st round `);
+	body.push(`# holdem ${round} th round `);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
