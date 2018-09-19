@@ -8,6 +8,18 @@ let fn = {};
 // https://m.blog.naver.com/PostView.nhn?blogId=josoblue&logNo=220817060229&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F
 
 /*
+
+가장 특이한 점은 텍사스홀덤은 어떠한 경우라도 무늬로 승자를 판별하는 경우가 없다.
+텍사스홀덤에서는 빽스트레이트플러쉬(빽스티플), 마운틴, 빽스트레이트라는 족보가 없다.
+
+텍사스홀덤의 경우 같은 족보일 때 나머지 숫자(킥커)가 높은 플레이어가 승자가 된다.
+그러므로 킥커가 매우 중요한 역할을 하게 되고 킥커 싸움도 치열하다.
+
+세븐 포커 경우 숫자까지 모두 같은 경우 무늬 스,다,하,크 순으로 판별하지만
+홀덤의 경우 어떤 경우라도 무늬로 승자를 판별하는 경우는 없다.
+*/
+
+/*
 * 카드 타입 정보
 */
 fn.CARD_TYPE = {
@@ -59,6 +71,59 @@ const BLACKJACK = 21;
 const CARD_NUM_START = 2;
 const CARD_NUM_A = 14;
 
+/*
+* 해당 숫자에 매칭되는 카드정보를 반환한다
+* @param num 숫자정보 
+* @return 마크
+*/
+fn.numToMark = (num)=>{
+	return CARD_N[num-2];
+}
+
+/*
+* 해당 댁 족보의 숫자 매칭 정보를 반환한다
+* @param el 댁
+* @return 숫자 매칭정보
+*/
+fn.getNums = (el) =>{
+	if(['NO_PAIR','STRAIGHT','FLUSH','STRAIGHT_FLASH'].includes(el.jokboe)){
+		// 1 - high card
+		return `( HIGH ${numToMark(el.groupNumbers[0].num)} )`;
+	}	
+	else if(['ONE_PAIR','TRIPPLE','FOUR_CARD','TRIPPLE'].includes(el.jokboe)){
+		// 1
+		return `( ${numToMark(el.groupNumbers[0].num)} )`;
+	}
+	else if(['TWO_PAIR','FULL_HOUSE'].includes(el.jokboe)){
+		// 2
+		return `( ${numToMark(el.groupNumbers[0].num)}, ${numToMark(el.groupNumbers[1].num)} )`;
+	}
+	return '';	// ROYAL_STRAIGHT_FLASH 
+}
+
+/*
+* [sortfilter]
+* 댁을 족보 기준으로 정렬한다
+*/
+let sortByJokbo = (a, b) =>{
+	if(b.jokbo==a.jokbo){
+		// 족보가 같으면 groupNumbers의 길이도 동일
+		for(let i=0;i<b.groupNumbers.length;i++){
+			if(b.groupNumbers[i].num!=a.groupNumbers[i].num){
+				return b.groupNumbers[i].num - a.groupNumbers[i].num;	
+			}
+		}
+		// 동일한 경우임 idx 가 낮은 것을 우선시 함
+		return a.idx - b.idx;
+	}
+	return b.jokbo-a.jokbo;
+}
+
+/*
+* 덱이 백스트레이트인지 여부를 판단한다
+* @param clone 복제된 카드(5) 정보
+* @return 여부
+*/
 let fnIsBackStraight = (clone)=>{
 
 	// 계산을 손쉽게 하기 위하여 복제카드는 정렬 한다(숫자기준으로)
@@ -78,6 +143,11 @@ let fnIsBackStraight = (clone)=>{
 	return true;
 }
 
+/*
+* 덱이 스트레이트인지 여부를 판단한다
+* @param clone 복제된 카드(5) 정보
+* @return 여부
+*/
 let fnIsStraight = (clone)=>{	
 
 	// 계산을 손쉽게 하기 위하여 복제카드는 정렬 한다(숫자기준으로)
@@ -97,13 +167,19 @@ let fnIsStraight = (clone)=>{
 	});
 }
 
+/*
+* 카드 정보에서 결합 정보를 추가
+* @param ori 원본 카드
+* @param lastAt 마지막 카드 인덱스 
+* @return 문자열로 변환된 카드 정보
+*/
 let fnToString = (ori, lastAt) =>{
 	let cards = [];
 	if(!lastAt){
 		lastAt = ori.length; 
 	}
 	for(let i=ori.length-lastAt;i<ori.length;i++){
-		cards.push(`${ori[i].type} ${ori[i].number}`);
+		cards.push(`${ori[i].type}${ori[i].number}`);
 	}
 	return cards.join(',');
 }
@@ -178,13 +254,15 @@ fn.getRanker = (joins, count=3) =>{
 		players.push(jb);
 		idx++;
 	}
-	players.sort((a,b)=>{
-		if(a.jokbo==b.jokbo){
-			return fn.sortFilterWhenSame(a, b);
-		}else{
-			return b.jokbo - a.jokbo;		
-		}
-	});
+	// players.sort((a,b)=>{
+	// 	if(a.jokbo==b.jokbo){
+	// 		return fn.sortFilterWhenSame(a, b);
+	// 	}else{
+	// 		return b.jokbo - a.jokbo;		
+	// 	}
+	// });
+
+	players.sort(sortByJokbo);
 
 	return players.slice(0,count);
 }
@@ -323,7 +401,7 @@ fn.jokboCards = (cards, name, idx) =>{
 	let clone = JSON.parse( JSON.stringify( cards ) );
 
 	let isFlush = fnMaxSameType(clone)==5;
-	let isBackStraight = fnIsBackStraight(clone);
+	// let isBackStraight = fnIsBackStraight(clone);
 	let isStraight = fnIsStraight(clone);
 
 	let maxSameNumber = fnMaxSameNumber(clone);
@@ -334,7 +412,7 @@ fn.jokboCards = (cards, name, idx) =>{
 
 	let isMountain = isStraight && maxNum==14;
 	let isRoyalStraightFlash = isMountain && isFlush;
-	let isBackStraightFlash = isBackStraight && isFlush;
+	// let isBackStraightFlash = isBackStraight && isFlush;
 	let isStraightFlash = isStraight && isFlush;
 
 	let numbers = fnNumbers(clone);
@@ -344,17 +422,18 @@ fn.jokboCards = (cards, name, idx) =>{
 	let isFullHouse = isTripple && numbers.length==2;	// 3,2
 	let isTwoPair = numbers.length==3;	// 2,2,1
 	let isOnePair = numbers.length==4;		// 2,1,1,1
-	let isNoPair = !isStraight&&!isBackStraight&&numbers.length==5;		// 1,1,1,1,1
+	// let isNoPair = !isStraight&&!isBackStraight&&numbers.length==5;		// 1,1,1,1,1
+	let isNoPair = !isStraight&&numbers.length==5;		// 1,1,1,1,1
 
 	let jokbo = JOKBO.NO_PAIR;
 	jokbo = Math.max(isRoyalStraightFlash?JOKBO.ROYAL_STRAIGHT_FLASH:0,jokbo);
-	jokbo = Math.max(isBackStraightFlash?JOKBO.BACK_STRAIGHT_FLASH:0,jokbo);
+	// jokbo = Math.max(isBackStraightFlash?JOKBO.BACK_STRAIGHT_FLASH:0,jokbo);
 	jokbo = Math.max(isStraightFlash?JOKBO.STRAIGHT_FLASH:0,jokbo);
 	jokbo = Math.max(isFourCard?JOKBO.FOUR_CARD:0,jokbo);
 	jokbo = Math.max(isFullHouse?JOKBO.FULL_HOUSE:0,jokbo);
 	jokbo = Math.max(isFlush?JOKBO.FLUSH:0,jokbo);
-	jokbo = Math.max(isMountain?JOKBO.MOUNTAIN:0,jokbo);
-	jokbo = Math.max(isBackStraight?JOKBO.BACK_STRAIGHT:0,jokbo);
+	// jokbo = Math.max(isMountain?JOKBO.MOUNTAIN:0,jokbo);
+	// jokbo = Math.max(isBackStraight?JOKBO.BACK_STRAIGHT:0,jokbo);
 	jokbo = Math.max(isStraight?JOKBO.STRAIGHT:0,jokbo);
 	jokbo = Math.max(isTripple?JOKBO.TRIPPLE:0,jokbo);
 	jokbo = Math.max(isTwoPair?JOKBO.TWO_PAIR:0,jokbo);
@@ -409,7 +488,8 @@ fn.makeDeck = () =>{
       	_type : i,
       	number : CARD_N[j],
       	_number : j+2,
-      	value : `${CARD_T[i]} ${CARD_N[j]}`,
+      	// value : `${CARD_T[i]} ${CARD_N[j]}`,
+      	value : `${CARD_T[i]}${CARD_N[j]}`,
       });
     }
   }

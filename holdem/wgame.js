@@ -9,6 +9,7 @@ const {sha256} = require('../util/wcrypto');
 const wcard = require('./wcard');
 const wtransfer = require('./wtransfer');
 const wwrite = require('./wwrite');
+const {getLastBlockNumer} = require('../util/wblock');
 
 // 기타 상수
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
@@ -140,7 +141,8 @@ fn.initFirst = async ()=>{
 
 	// last.block.wc : 최종 읽어들인 블록정보 
 	if(wfile.isNotExist(LAST_BLOCK_FILE)){
-		await wfile.write(LAST_BLOCK_FILE, '0');
+		let lastblock = await getLastBlockNumer();
+		await wfile.write(LAST_BLOCK_FILE, lastblock);
 	}
 
 	// logs/wc : 각종 처리 정보 로깅 폴더
