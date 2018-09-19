@@ -1,0 +1,6223 @@
+[
+  {
+    "color": "Red",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 1,
+    "is_starter": false,
+    "name": "Goblin Shaman",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Weaken"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Slow"
+        ],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        4,
+        3,
+        4,
+        3,
+        3,
+        3,
+        4,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        3,
+        2,
+        2,
+        2,
+        3,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 2,
+    "is_starter": true,
+    "name": "Giant Roc",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Flying"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+          "Trample"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "health": [
+        6,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        9,
+        8
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 3,
+    "is_starter": true,
+    "name": "Kobold Miner",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Sneak"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "health": [
+        3,
+        4,
+        4,
+        5,
+        5,
+        5,
+        6,
+        7,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 4,
+    "is_starter": true,
+    "name": "Fire Beetle",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Snipe"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        5,
+        4,
+        5,
+        4,
+        5,
+        5,
+        4,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "speed": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 5,
+    "is_starter": true,
+    "name": "Malric Inferno",
+    "rarity": 2,
+    "stats": {
+      "armor": 0,
+      "attack": 1,
+      "health": 0,
+      "magic": 0,
+      "mana": 3,
+      "ranged": 0,
+      "speed": 1
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 6,
+    "is_starter": false,
+    "name": "Serpentine Soldier",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Dodge"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Thorns"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "attack": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "health": [
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        4,
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 7,
+    "is_starter": true,
+    "name": "Pit Ogre",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Stun"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Enrage"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      "health": [
+        7,
+        7,
+        8,
+        8,
+        8,
+        9,
+        9,
+        10
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 8,
+    "is_starter": false,
+    "name": "Cerberus",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [
+          "Retaliate"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5
+      ],
+      "health": [
+        4,
+        5,
+        6,
+        5,
+        5,
+        5,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 9,
+    "is_starter": false,
+    "name": "Fire Demon",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [
+          "Blast"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        5,
+        6,
+        6,
+        5,
+        6,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        4
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 10,
+    "is_starter": false,
+    "name": "Serpent of the Flame",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [
+          "Retaliate"
+        ],
+        [],
+        [
+          "Poison"
+        ],
+        [],
+        [
+          "Piercing"
+        ],
+        []
+      ],
+      "armor": [
+        0,
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "attack": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      "health": [
+        5,
+        5,
+        5,
+        5,
+        6,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        5,
+        5,
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 11,
+    "is_starter": false,
+    "name": "Elemental Phoenix",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Flying"
+        ],
+        [
+          "Blast"
+        ],
+        [
+          "Magic Reflect"
+        ],
+        [
+          "Dodge"
+        ]
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        7,
+        7,
+        6,
+        7
+      ],
+      "magic": [
+        3,
+        3,
+        4,
+        4
+      ],
+      "mana": [
+        9,
+        9,
+        9,
+        9
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 12,
+    "is_starter": false,
+    "name": "Pirate Captain",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Snipe"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+          "Inspire"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        3,
+        3,
+        2,
+        2,
+        3
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "speed": [
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 13,
+    "is_starter": false,
+    "name": "Spineback Turtle",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [
+          "Thorns"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        5
+      ],
+      "attack": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "health": [
+        6,
+        7,
+        7,
+        7,
+        6,
+        6,
+        7,
+        7,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 14,
+    "is_starter": false,
+    "name": "Crustacean King",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Group Heal"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+          "Protect"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        3,
+        4,
+        3,
+        3,
+        4,
+        3,
+        3,
+        4,
+        3,
+        4
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 15,
+    "is_starter": false,
+    "name": "Sabre Shark",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Sneak"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "health": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        7,
+        7,
+        7,
+        8
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 16,
+    "is_starter": false,
+    "name": "Alric Stormbringer",
+    "rarity": 2,
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "magic": 1,
+      "mana": 3,
+      "ranged": 0,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 17,
+    "is_starter": false,
+    "name": "Medusa",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [
+          "Stun"
+        ],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        7,
+        7,
+        7,
+        7,
+        6,
+        7,
+        8,
+        7
+      ],
+      "magic": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 18,
+    "is_starter": false,
+    "name": "Water Elemental",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Heal"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Dodge"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "speed": [
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 19,
+    "is_starter": false,
+    "name": "Frozen Soldier",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Shield"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Magic Reflect"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        7,
+        7
+      ],
+      "attack": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "health": [
+        3,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 20,
+    "is_starter": false,
+    "name": "Mischievous Mermaid",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [
+          "Dodge"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        6,
+        7,
+        7,
+        6,
+        7,
+        7
+      ],
+      "magic": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        4
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        4,
+        4,
+        4,
+        5,
+        5,
+        5
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 21,
+    "is_starter": false,
+    "name": "Naga Warrior",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [
+          "Retaliate"
+        ],
+        [],
+        [],
+        [
+          "Enrage"
+        ],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        2,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      "health": [
+        6,
+        6,
+        7,
+        7,
+        8,
+        9
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 22,
+    "is_starter": false,
+    "name": "Frost Giant",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Shield"
+        ],
+        [
+          "Trample"
+        ],
+        [
+          "Slow"
+        ],
+        [
+          "Stun"
+        ]
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        4,
+        5,
+        5,
+        5
+      ],
+      "health": [
+        9,
+        9,
+        10,
+        10
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 23,
+    "is_starter": true,
+    "name": "Flesh Golem",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [
+          "Heal"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Void"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      "health": [
+        7,
+        8,
+        8,
+        7,
+        8,
+        9,
+        8,
+        9,
+        8,
+        9
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 24,
+    "is_starter": true,
+    "name": "Goblin Sorcerer",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Sneak"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+          "Dodge"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        5,
+        5,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        4
+      ],
+      "magic": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        5,
+        5,
+        6,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8,
+        7
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 25,
+    "is_starter": false,
+    "name": "Rexxie",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [
+          "Trample"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        4,
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6,
+        7
+      ],
+      "health": [
+        8,
+        8,
+        9,
+        9,
+        10,
+        9,
+        10,
+        10,
+        11,
+        11
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 26,
+    "is_starter": true,
+    "name": "Minotaur Warrior",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [
+          "Piercing"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "attack": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "health": [
+        3,
+        4,
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        5,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 27,
+    "is_starter": true,
+    "name": "Lyanna Natura",
+    "rarity": 2,
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 1,
+      "magic": 0,
+      "mana": 3,
+      "ranged": 0,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 28,
+    "is_starter": false,
+    "name": "Earth Elemental",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [
+          "Heal"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        6,
+        6,
+        6,
+        6,
+        7,
+        6,
+        7,
+        8
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "speed": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 29,
+    "is_starter": false,
+    "name": "Stone Golem",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Shield"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Stun"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "attack": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "health": [
+        4,
+        4,
+        4,
+        5,
+        4,
+        5,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 30,
+    "is_starter": true,
+    "name": "Stonesplitter Orc",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Retaliate"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Enrage"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3
+      ],
+      "attack": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5
+      ],
+      "health": [
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 31,
+    "is_starter": false,
+    "name": "Magi of the Forest",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        5,
+        4,
+        5,
+        6,
+        6,
+        7
+      ],
+      "magic": [
+        2,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 32,
+    "is_starter": false,
+    "name": "Swamp Thing",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [
+          "Weaken"
+        ],
+        [],
+        [
+          "Slow"
+        ],
+        [],
+        [
+          "Void"
+        ],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        5,
+        6,
+        6,
+        5,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 33,
+    "is_starter": false,
+    "name": "Spirit of the Forest",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Flying",
+          "Snipe"
+        ],
+        [
+          "Group Heal"
+        ],
+        [
+          "Protect"
+        ],
+        [
+          "Dodge"
+        ]
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "ranged": [
+        2,
+        2,
+        2,
+        3
+      ],
+      "speed": [
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 34,
+    "is_starter": false,
+    "name": "Divine Healer",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Group Heal"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+          "Slow"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        5,
+        4,
+        4,
+        5,
+        4,
+        4,
+        5,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 35,
+    "is_starter": true,
+    "name": "Feral Spirit",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Sneak"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5
+      ],
+      "health": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        4,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        7,
+        7,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 36,
+    "is_starter": true,
+    "name": "Silvershield Knight",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Inspire"
+        ],
+        [],
+        [],
+        [
+          "Piercing"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Trample"
+        ],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "attack": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5
+      ],
+      "health": [
+        3,
+        4,
+        4,
+        4,
+        4,
+        5,
+        4,
+        4,
+        5,
+        5
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 37,
+    "is_starter": true,
+    "name": "Silvershield Warrior",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "attack": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "health": [
+        4,
+        5,
+        6,
+        5,
+        6,
+        6,
+        7,
+        6,
+        7,
+        8
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 38,
+    "is_starter": true,
+    "name": "Tyrus Paladium",
+    "rarity": 2,
+    "stats": {
+      "armor": 1,
+      "attack": 0,
+      "health": 0,
+      "magic": 0,
+      "mana": 3,
+      "ranged": 0,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "White",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 39,
+    "is_starter": true,
+    "name": "Peacebringer",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 40,
+    "is_starter": false,
+    "name": "Silvershield Paladin",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Shield"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Magic Reflect"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4
+      ],
+      "attack": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "health": [
+        3,
+        4,
+        5,
+        5,
+        5,
+        6,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 41,
+    "is_starter": false,
+    "name": "Clay Golem",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [
+          "Void"
+        ],
+        [],
+        [],
+        [
+          "Enrage"
+        ],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      "health": [
+        9,
+        10,
+        10,
+        10,
+        11,
+        11,
+        11,
+        12
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 42,
+    "is_starter": false,
+    "name": "Defender of Truth",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [
+          "Protect"
+        ],
+        [],
+        [
+          "Shield"
+        ],
+        []
+      ],
+      "armor": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        5,
+        4,
+        4,
+        5,
+        5,
+        4
+      ],
+      "magic": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        4
+      ],
+      "mana": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 43,
+    "is_starter": false,
+    "name": "Air Elemental",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [
+          "Dodge"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        5,
+        5,
+        5,
+        6,
+        6,
+        7
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        2,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "speed": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "White",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 44,
+    "is_starter": false,
+    "name": "Angel of Light",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Flying",
+          "Protect"
+        ],
+        [
+          "Group Heal"
+        ],
+        [
+          "Inspire"
+        ],
+        [
+          "Resurrect"
+        ]
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 45,
+    "is_starter": false,
+    "name": "Animated Corpse",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [
+          "Void"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "health": [
+        6,
+        7,
+        7,
+        7,
+        7,
+        6,
+        7,
+        8,
+        8,
+        9
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 46,
+    "is_starter": false,
+    "name": "Haunted Spider",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [
+          "Poison"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        2,
+        3,
+        3,
+        4,
+        3,
+        3,
+        4,
+        5,
+        4,
+        5
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "ranged": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "speed": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 47,
+    "is_starter": false,
+    "name": "Skeleton Assassin",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Sneak"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+          "Poison"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5
+      ],
+      "health": [
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        3,
+        4,
+        5,
+        4
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 80,
+    "editions": "0,1",
+    "id": 48,
+    "is_starter": false,
+    "name": "Spineback Wolf",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [],
+        [
+          "Thorns"
+        ],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "attack": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "health": [
+        3,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        4,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 49,
+    "is_starter": false,
+    "name": "Zintar Mortalis",
+    "rarity": 2,
+    "stats": {
+      "armor": 0,
+      "attack": -1,
+      "health": 0,
+      "magic": 0,
+      "mana": 3,
+      "ranged": 0,
+      "speed": -1
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 50,
+    "is_starter": false,
+    "name": "Haunted Spirit",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Heal"
+        ],
+        [],
+        [],
+        [
+          "Magic Reflect"
+        ],
+        [],
+        [],
+        [
+          "Void"
+        ],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "health": [
+        7,
+        8,
+        8,
+        8,
+        9,
+        9,
+        9,
+        10
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 51,
+    "is_starter": false,
+    "name": "Twisted Jester",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Snipe"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Dodge"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        5,
+        5,
+        5,
+        5,
+        6,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 22,
+    "editions": "0,1",
+    "id": 52,
+    "is_starter": false,
+    "name": "Undead Priest",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Weaken"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Slow"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        3,
+        4,
+        3,
+        4,
+        3,
+        4,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mana": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 53,
+    "is_starter": false,
+    "name": "Dark Enchantress",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [
+          "Flying"
+        ],
+        [],
+        [],
+        [
+          "Stun"
+        ],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "magic": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        4,
+        4,
+        4,
+        5,
+        5
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 10,
+    "editions": "0,1",
+    "id": 54,
+    "is_starter": false,
+    "name": "Screaming Banshee",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [
+          "Fear"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        5,
+        4,
+        4,
+        5,
+        4,
+        5
+      ],
+      "magic": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 55,
+    "is_starter": false,
+    "name": "Lord of Darkness",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Fear"
+        ],
+        [
+          "Stun"
+        ],
+        [
+          "Enrage"
+        ],
+        [
+          "Retaliate"
+        ]
+      ],
+      "armor": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "attack": [
+        5,
+        5,
+        6,
+        6
+      ],
+      "health": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gold",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 56,
+    "is_starter": false,
+    "name": "Selenia Sky",
+    "rarity": 4,
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "magic": 0,
+      "mana": 3,
+      "ranged": 1,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "Gold",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 57,
+    "is_starter": false,
+    "name": "Lightning Dragon",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Flying"
+        ],
+        [
+          "Stun"
+        ],
+        [
+          "Thorns"
+        ],
+        [
+          "Piercing"
+        ]
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        8,
+        8,
+        7,
+        8
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "ranged": [
+        3,
+        3,
+        4,
+        4
+      ],
+      "speed": [
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gold",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 58,
+    "is_starter": false,
+    "name": "Chromatic Dragon",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Flying"
+        ],
+        [
+          "Enrage"
+        ],
+        [
+          "Piercing"
+        ],
+        [
+          "Fear"
+        ]
+      ],
+      "armor": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "attack": [
+        4,
+        5,
+        5,
+        6
+      ],
+      "health": [
+        6,
+        7,
+        8,
+        8
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gold",
+    "drop_rate": 2,
+    "editions": "0,1",
+    "id": 59,
+    "is_starter": false,
+    "name": "Gold Dragon",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Flying"
+        ],
+        [
+          "Heal"
+        ],
+        [
+          "Blast"
+        ],
+        [
+          "Magic Reflect"
+        ]
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        8,
+        9,
+        8,
+        8
+      ],
+      "magic": [
+        3,
+        3,
+        4,
+        4
+      ],
+      "mana": [
+        9,
+        9,
+        9,
+        9
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 80,
+    "editions": "1",
+    "id": 60,
+    "is_starter": false,
+    "name": "Peaceful Giant",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 80,
+    "editions": "1",
+    "id": 61,
+    "is_starter": false,
+    "name": "Grumpy Dwarf",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [],
+        [
+          "Enrage"
+        ],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3
+      ],
+      "attack": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "health": [
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 80,
+    "editions": "1",
+    "id": 62,
+    "is_starter": false,
+    "name": "Elven Cutthroat",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Sneak"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "health": [
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        5,
+        5,
+        6,
+        6,
+        6,
+        7,
+        7,
+        7,
+        8,
+        8
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 80,
+    "editions": "1",
+    "id": 63,
+    "is_starter": false,
+    "name": "Centaur",
+    "rarity": 1,
+    "stats": {
+      "abilities": [
+        [
+          "Snipe"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        4,
+        5,
+        5,
+        4,
+        5,
+        5,
+        6,
+        5,
+        5,
+        6
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ranged": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "speed": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        6,
+        6
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 22,
+    "editions": "1",
+    "id": 64,
+    "is_starter": false,
+    "name": "Cocatrice",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Flying"
+        ],
+        [],
+        [],
+        [],
+        [
+          "Dodge"
+        ],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      "health": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        5,
+        6,
+        6,
+        7,
+        7,
+        7,
+        8,
+        8
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 22,
+    "editions": "1",
+    "id": 65,
+    "is_starter": false,
+    "name": "Cyclops",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [
+          "Stun"
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        6,
+        6,
+        6,
+        6,
+        7,
+        6,
+        7,
+        8
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "speed": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 22,
+    "editions": "1",
+    "id": 66,
+    "is_starter": false,
+    "name": "Enchanted Pixie",
+    "rarity": 2,
+    "stats": {
+      "abilities": [
+        [
+          "Flying"
+        ],
+        [],
+        [],
+        [
+          "Inspire"
+        ],
+        [],
+        [],
+        [
+          "Protect"
+        ],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "magic": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mana": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        3,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 10,
+    "editions": "1",
+    "id": 67,
+    "is_starter": false,
+    "name": "Raging Impaler",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [
+          "Piercing"
+        ],
+        [],
+        [],
+        [
+          "Enrage"
+        ],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        2,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      "health": [
+        6,
+        6,
+        7,
+        7,
+        8,
+        9
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 10,
+    "editions": "1",
+    "id": 68,
+    "is_starter": false,
+    "name": "Magi Sphinx",
+    "rarity": 3,
+    "stats": {
+      "abilities": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "health": [
+        5,
+        6,
+        5,
+        6,
+        6,
+        7
+      ],
+      "magic": [
+        2,
+        2,
+        3,
+        3,
+        4,
+        4
+      ],
+      "mana": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Gray",
+    "drop_rate": 2,
+    "editions": "1",
+    "id": 69,
+    "is_starter": false,
+    "name": "Hydra",
+    "rarity": 4,
+    "stats": {
+      "abilities": [
+        [
+          "Heal"
+        ],
+        [
+          "Thorns"
+        ],
+        [
+          "Retaliate"
+        ],
+        [
+          "Trample"
+        ]
+      ],
+      "armor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "attack": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "health": [
+        8,
+        9,
+        9,
+        10
+      ],
+      "magic": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "ranged": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "speed": [
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "sub_type": null,
+    "type": "Monster"
+  },
+  {
+    "color": "Red",
+    "drop_rate": 10,
+    "editions": "1",
+    "id": 70,
+    "is_starter": false,
+    "name": "Talia Firestorm",
+    "rarity": 3,
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "magic": 0,
+      "mana": 2,
+      "ranged": 0,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "Blue",
+    "drop_rate": 10,
+    "editions": "1",
+    "id": 71,
+    "is_starter": false,
+    "name": "Xia Seachan",
+    "rarity": 3,
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "magic": 0,
+      "mana": 2,
+      "ranged": 0,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "Green",
+    "drop_rate": 10,
+    "editions": "1",
+    "id": 72,
+    "is_starter": false,
+    "name": "Xander Foxwood",
+    "rarity": 3,
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "magic": 0,
+      "mana": 2,
+      "ranged": 0,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "White",
+    "drop_rate": 10,
+    "editions": "1",
+    "id": 73,
+    "is_starter": false,
+    "name": "Kiara Lightbringer",
+    "rarity": 3,
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "magic": 0,
+      "mana": 2,
+      "ranged": 0,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  },
+  {
+    "color": "Black",
+    "drop_rate": 10,
+    "editions": "1",
+    "id": 74,
+    "is_starter": false,
+    "name": "Jarlax the Undead",
+    "rarity": 3,
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "magic": 0,
+      "mana": 2,
+      "ranged": 0,
+      "speed": 0
+    },
+    "sub_type": null,
+    "type": "Summoner"
+  }
+]
