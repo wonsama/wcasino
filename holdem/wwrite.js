@@ -137,7 +137,7 @@ fn.roundEnd = async () =>{
 	body.push('---');
 
 	const PRIZE_AMT = Number(WC_HOLDEM_PRICE) * CARD_MAX_DRAW;
-	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`);
+	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${WC_HOLDEM_TYPE}`);
 	let isRSF = rankers[0].jokboe=='ROYAL_STRAIGHT_FLASH'?true:false;		// 100%
 	let isSF = rankers[0].jokboe=='STRAIGHT_FLASH'?true:false;					// 10%
 	let isFC = rankers[0].jokboe=='FOUR_CARD'?true:false;							// 5%
