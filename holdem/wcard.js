@@ -76,7 +76,7 @@ const CARD_NUM_A = 14;
 * @param num 숫자정보 
 * @return 마크
 */
-fn.numToMark = (num)=>{
+let numToMark = (num)=>{
 	return CARD_N[num-2];
 }
 
