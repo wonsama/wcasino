@@ -137,7 +137,7 @@ fn.roundEnd = async () =>{
 	body.push('---');
 
 	const PRIZE_AMT = Number(WC_HOLDEM_PRICE) * CARD_MAX_DRAW;
-	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}`);
+	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${WC_HOLDEM_TYPE}`);
 	let isRoyal = rankers[0].jokboe=='ROYAL_STRAIGHT_FLASH'?true:false;
 	let isSeven = rankers[0].value.indexOf('7')>=0?true:false;
 	let prize = [PRIZE_AMT*0.5, PRIZE_AMT*0.3, PRIZE_AMT*0.1];
