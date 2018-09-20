@@ -36,6 +36,8 @@ const WC_TRANS_SLEEP = process.env.WC_TRANS_SLEEP;
 const PARENT_PERM_LINK = `wcasino`;	// category
 const CARD_MAX_DRAW = 23;
 
+const HOLDEM_GUIDE_LINK = `https://steemit.com/wcasino/@wcasino/wcasino-holdem-how-to-play`;
+
 let fn = {};
 
 /*
@@ -102,7 +104,6 @@ fn.roundEnd = async () =>{
 	body.push(`\`\`\``);
 	body.push(``);
 	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
-	body.push(`Testing now ! don't transfer steem !`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
@@ -216,6 +217,9 @@ fn.roundEnd = async () =>{
 	body.push(`next round will open at ${ndate.toJSON()} !`)
 	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	// body.push(`Testing now ! don't transfer steem !`);
+	body.push(`<center>`);
+	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
+	body.push(`</center>`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
@@ -293,6 +297,9 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`[JOIN HOLDEM NOW ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	// body.push(`Testing now ! don't transfer steem !`);
+	body.push(`<center>`);
+	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
+	body.push(`</center>`);
 
 	let sendMessage = await steem.broadcast.commentAsync(
 		WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
