@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# SETTINGS
+NODE_APP_PATH=/home/bc/dev/wcasino
+CHECK_NAME=[w]casino
+
+# HEART BEAT CHECK
+while [ : ]
+do
+RES=$(ps -ef | grep $CHECK_NAME | wc -l)
+if [ "$RES" = "0" ]; then
+        echo restart $CHECK_NAME at `date`
+        nohup node $NODE_APP_PATH &
+else
+        echo `date` $CHECK_NAME is live
+fi
+sleep 10
+done
