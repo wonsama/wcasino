@@ -12,13 +12,15 @@ const wwrite = require('./wwrite');
 const {getLastBlockNumer} = require('../util/wblock');
 
 // 기타 상수
+const SEP = require('path').sep;
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
-const WC_CONFIG_FOLDER = `${PROJECT_ROOT}/config`;
-const WC_LOG_FOLDER = `${PROJECT_ROOT}/logs/wc`;
-const WC_ROUND_FOLDER = `${PROJECT_ROOT}/logs/round`;
-const WC_PENDING_FILE = `${PROJECT_ROOT}/config/holdem.pending.wc`;
-const WC_ROUND_FILE = `${PROJECT_ROOT}/config/holdem.round.wc`;
-const WC_ROUND_NEXT = `${PROJECT_ROOT}/config/holdem.round.next.wc`;
+const WC_CONFIG_FOLDER = `${PROJECT_ROOT}${SEP}config`;
+const WC_LOG_FOLDER = `${PROJECT_ROOT}${SEP}logs${SEP}wc`;
+const WC_ROUND_FOLDER = `${PROJECT_ROOT}${SEP}logs${SEP}round`;
+const WC_PENDING_FILE = `${PROJECT_ROOT}${SEP}config${SEP}holdem.pending.wc`;
+const WC_ROUND_FILE = `${PROJECT_ROOT}${SEP}config${SEP}holdem.round.wc`;
+const WC_ROUND_NEXT = `${PROJECT_ROOT}${SEP}config${SEP}holdem.round.next.wc`;
+
 const {LAST_BLOCK_FILE} = require('../util/wblock');
 
 const CARD_COMMUNITY_DRAW_CNT = 3;

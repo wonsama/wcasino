@@ -5,6 +5,7 @@
 	https://stackoverflow.com/questions/23875233/require-returns-an-empty-object/23875299
 */
 const steem = require('steem');
+const dateformat = require('dateformat');
 
 const wtransfer = require('./wtransfer');
 const wcard = require('./wcard');
@@ -12,7 +13,7 @@ const wcard = require('./wcard');
 const wlog = require('../util/wlog');
 const wfile = require('../util/wfile');
 const {sleep} = require('../util/wutil');
-const {getSteem} = require('../util/wsteem');
+const {getBalance} = require('../util/wsteem');
 const {getAmount} = require('../util/wsteem');
 
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
@@ -20,23 +21,25 @@ const WC_JACKPOT_AC = process.env.WC_JACKPOT_AC;
 
 const WC_HOLDEM_MEMO = process.env.WC_HOLDEM_MEMO;
 const WC_HOLDEM_PRICE = process.env.WC_HOLDEM_PRICE;
-const WC_HOLDEM_TYPE = process.env.WC_HOLDEM_TYPE;
+const WC_HOLDEM_TYPE = process.env.WC_HOLDEM_TYPE;	// STEEM or SBD
 const WC_HOLDEM_KEY_POSTING = process.env.WC_HOLDEM_KEY_POSTING;
 const WC_HOLDEM_AC = process.env.WC_HOLDEM_AC;
 const WC_HOLDEM_NEXT_MIN = Number(process.env.WC_HOLDEM_NEXT_MIN);
 
 const WC_PAY_AC = process.env.WC_PAY_AC;
 
-const WC_ROUND_FOLDER = `${PROJECT_ROOT}/logs/round`;
-const WC_ROUND_FILE = `${PROJECT_ROOT}/config/holdem.round.wc`;
-const WC_ROUND_NEXT = `${PROJECT_ROOT}/config/holdem.round.next.wc`;
+const SEP = require('path').sep;
+const WC_ROUND_FOLDER = `${PROJECT_ROOT}${SEP}logs${SEP}round`;
+const WC_ROUND_FILE = `${PROJECT_ROOT}${SEP}config${SEP}holdem.round.wc`;
+const WC_ROUND_NEXT = `${PROJECT_ROOT}${SEP}config${SEP}holdem.round.next.wc`;
+const WC_PENDING_FILE = `${PROJECT_ROOT}${SEP}config${SEP}holdem.pending.wc`;
 
 const WC_TRANS_SLEEP = process.env.WC_TRANS_SLEEP;
 
 const PARENT_PERM_LINK = `wcasino`;	// category
 const CARD_MAX_DRAW = 23;
 
-const HOLDEM_GUIDE_LINK = `https://steemit.com/wcasino/@wcasino/wcasino-holdem-how-to-play`;
+const HOLDEM_GUIDE_LINK = `https://steemit.com/wcasino/@wcasino/holdem-how-to-play-v0-1`;
 
 let fn = {};
 
@@ -45,7 +48,7 @@ let fn = {};
 */
 fn.roundEnd = async () =>{
 	
-	let balance = await getSteem(WC_JACKPOT_AC);	// jackpot 계정의 스팀 잔액을 반환한다
+	let balance = await getBalance(WC_JACKPOT_AC, WC_HOLDEM_TYPE);	// jackpot 계정의 스팀 잔액을 반환한다
 
 	// 라운드+참여 정보 로딩	
 	let round = Number(await wfile.read(WC_ROUND_FILE));
@@ -85,12 +88,14 @@ fn.roundEnd = async () =>{
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
-	body.push(`|no |author |c1 |c2 |time|`);
+	body.push(`|no |author |c1 |c2 |time (utc+9) |`);
 	body.push(`|---|---|---|---|---|`);
 
 	let no = 1;
 	for(let j of joins){
-		body.push(`|${no}|${j.from}|${j.cards[3].value}|${j.cards[4].value}|${j.timestamp}|`);
+		let time =  j.timestamp.indexOf("Z")>0?j.timestamp:j.timestamp+".000Z";
+		let t = new Date(time);		
+		body.push(`|${no}|${j.from}|${j.cards[3].value}|${j.cards[4].value}|${dateformat(t, 'yy.mm.dd HH:MM:ss')}|`);
 		no++;
 	}
 
@@ -103,7 +108,9 @@ fn.roundEnd = async () =>{
 	body.push(`${deck}`);
 	body.push(`\`\`\``);
 	body.push(``);
+	body.push(`<center>`);
 	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
+	body.push(`</center>`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
@@ -203,10 +210,18 @@ fn.roundEnd = async () =>{
 	wlog.info(jmsg);
 	
 	// 나머지 : Holdem 계정의 잔금을 조회한 후 pay 계정으로 보낸다
-	let hbalance = await getSteem(WC_HOLDEM_AC);	// holdem 계정의 스팀 잔액을 반환한다
-	let pmsg = `Round ${round} remain money transfer.`;
-	await wtransfer.sendFromHoldem(WC_PAY_AC, `${hbalance.toFixed(3)} ${WC_HOLDEM_TYPE}`, pmsg);
-	wlog.info(pmsg);
+	let hbalance = await getBalance(WC_HOLDEM_AC, WC_HOLDEM_TYPE);	// holdem 계정의 스팀 잔액을 반환한다
+	// 팬딩된 계정 수 x 금액 부분은 제외 한 상태에서 보낸다
+	let pendings = await fn.getPending();
+	hbalance = hbalance - (pendings.length) * WC_HOLDEM_PRICE;
+
+	if(hbalance>0){
+		let pmsg = `Round ${round} remain money transfer.`;
+		await wtransfer.sendFromHoldem(WC_PAY_AC, `${hbalance.toFixed(3)} ${WC_HOLDEM_TYPE}`, pmsg);
+		wlog.info(pmsg);
+	}else{
+		wlog.error(`reamin hbalance is ${hbalance} !!! `);
+	}
 	
 	// 시간정보
 	let nextmili = new Date().getTime()+1000*60*WC_HOLDEM_NEXT_MIN;
@@ -214,8 +229,10 @@ fn.roundEnd = async () =>{
 	ndate.setTime(nextmili);
 
 	body.push(``);
-	body.push(`next round will open at ${ndate.toJSON()} !`)
+	body.push(`next round will open at ${ndate.toJSON()} !`);
+	body.push(`<center>`);
 	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
+	body.push(`</center>`);
 	// body.push(`Testing now ! don't transfer steem !`);
 	body.push(`<center>`);
 	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
@@ -240,11 +257,24 @@ fn.roundEnd = async () =>{
 };
 
 /*
+* 대기열 정보를 반환한다
+* wgame에도 존재하나 그럼 순환참조가 발생하므로 반드시 따로 사용
+*/
+fn.getPending = async () =>{
+	try{
+		let pending = JSON.parse(await wfile.read(WC_PENDING_FILE));
+		return Promise.resolve(pending);	
+	}catch(e){
+		return Promise.reject(e);
+	}
+}
+
+/*
 * 계정에 글쓰기 업데이트
 */
 fn.update = async ()=>{
 
-	let balance = await getSteem(WC_JACKPOT_AC);	// jackpot 계정의 스팀 잔액을 반환한다
+	let balance = await getBalance(WC_JACKPOT_AC, WC_HOLDEM_TYPE);	// jackpot 계정의 스팀 잔액을 반환한다
 
 	// 라운드+참여 정보 로딩	
 	let round = Number(await wfile.read(WC_ROUND_FILE));
@@ -270,7 +300,7 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`blockchain based transparent game`);
-	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is ${balance} STEEM`);
+	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is ${balance} ${WC_HOLDEM_TYPE}`);
 	body.push(`</center>`);
 	body.push(``);
 	body.push(`# holdem ${round} th round `);
@@ -281,13 +311,14 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
-	body.push(`|no |author |c1 |c2 |time|`);
+	body.push(`|no |author |c1 |c2 |time (utc+9) |`);
 	body.push(`|---|---|---|---|---|`);
 
 	let no = 1;
 	for(let j of joins){
-		// body.push(`|${no}|${j.from}|${j.cards[3].value}|${j.cards[4].value}|${j.timestamp}|`);
-		body.push(`|${no}|${j.from}|${j.cards[3].value}|???|${j.timestamp}|`);
+		let time =  j.timestamp.indexOf("Z")>0?j.timestamp:j.timestamp+".000Z";
+		let t = new Date(time);
+		body.push(`|${no}|${j.from}|${j.cards[3].value}|???|${dateformat(t, 'yy.mm.dd HH:MM:ss')}|`);
 		no++;
 	}
 	body.push(``);
@@ -295,7 +326,9 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`Current joined ${joins.length}/${CARD_MAX_DRAW} users.`);
 	body.push(``);
+	body.push(`<center>`);
 	body.push(`[JOIN HOLDEM NOW ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
+	body.push(`</center>`);
 	// body.push(`Testing now ! don't transfer steem !`);
 	body.push(`<center>`);
 	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);

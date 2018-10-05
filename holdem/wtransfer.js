@@ -14,6 +14,7 @@ const WC_FOLDER = process.env.WC_FOLDER;
 const WC_FILE_ROOT = PROJECT_ROOT+WC_FOLDER+SEP;
 const WC_HOLDEM_AC = process.env.WC_HOLDEM_AC;
 const WC_HOLDEM_KEY_ACTIVE = process.env.WC_HOLDEM_KEY_ACTIVE;
+const WC_HOLDEM_KEY_MEMO = process.env.WC_HOLDEM_KEY_MEMO;
 const WC_HOLDEM_MEMO = process.env.WC_HOLDEM_MEMO;
 const WC_HOLDEM_PRICE = process.env.WC_HOLDEM_PRICE;
 const WC_HOLDEM_TYPE = process.env.WC_HOLDEM_TYPE;
@@ -58,6 +59,7 @@ fn.getTransfers = (filtered) =>{
 		for(let tr of transfers){
 			let msg = JSON.stringify({
 				timestamp:tr.timestamp,
+				// timestamp: dateformat(new Date(tr.timestamp+'.000Z'), 'yy.mm.dd HH:MM:ss'),
 				block_num:tr.block_num,
 				transaction_num:tr.transaction_num,
 				from:tr.operation[1].from,
@@ -151,10 +153,16 @@ fn.doRefunds = async (refunds) =>{
 */ 
 fn.sendJoinInfo = async (step, pen, round, c) =>{
 	
-	let sendMsg = `@${pen.from} is joined holdem round ${round} ( ${step} ), your card is ${c[3].value}, ${c[4].value} ::: tranfer info ( block_num : ${pen.block_num}, transaction_num : ${pen.transaction_num} )`;
+	let sendMsg = `# @${pen.from} is joined holdem round ${round} ( ${step} ), your card is ${c[3].value}, ${c[4].value} ::: tranfer info ( block_num : ${pen.block_num}, transaction_num : ${pen.transaction_num} )`;
 	try{
-		let tr = await fn.sendFromHoldem(pen.from, `0.001 STEEM`, sendMsg);
+
+		let accs = await steem.api.getAccountsAsync([pen.from]);	// 받는이 계정에서 메모 공개키 정보 확보
+		let send_pub_memo = accs[0].memo_key;
+		let encoded = steem.memo.encode(WC_HOLDEM_KEY_MEMO, send_pub_memo, sendMsg);
+
+		let tr = await fn.sendFromHoldem(pen.from, `0.001 ${WC_HOLDEM_TYPE}`, encoded);
 		wlog.info(sendMsg);
+		wlog.info(encoded);
 	}catch(e){
 		wlog.error(e.stack);
 	}
