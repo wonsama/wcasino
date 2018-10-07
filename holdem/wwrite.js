@@ -15,6 +15,7 @@ const wfile = require('../util/wfile');
 const {sleep} = require('../util/wutil');
 const {getBalance} = require('../util/wsteem');
 const {getAmount} = require('../util/wsteem');
+const {getRecentComment} = require('../util/wsteem');
 
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
 const WC_JACKPOT_AC = process.env.WC_JACKPOT_AC;
@@ -38,6 +39,7 @@ const WC_TRANS_SLEEP = process.env.WC_TRANS_SLEEP;
 
 const PARENT_PERM_LINK = `wcasino`;	// category
 const CARD_MAX_DRAW = 23;
+const OTHER_TAGS = `'game', 'games', 'gamble', 'gaming'`;
 
 const HOLDEM_GUIDE_LINK = `https://steemit.com/wcasino/@wcasino/holdem-how-to-play-v0-1`;
 
@@ -60,7 +62,7 @@ fn.roundEnd = async () =>{
 	let permlink = `holdem-round-${round}`;
 	let title = `[holdem] round ${round} game is done ! view results.`;
 	let jsonMetadata = JSON.stringify({
-		"tags":[`${PARENT_PERM_LINK}`],
+		"tags":[`${PARENT_PERM_LINK}`,`${OTHER_TAGS}`],
 		"image":["https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg"],
 		"links":[`https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`],
 		"app":"steemit/0.1",
@@ -186,13 +188,39 @@ fn.roundEnd = async () =>{
 	body.push('---');
 
 	// 1~3 등 : 송금 처리를 수행한다
+	let replyJsonMetadata = JSON.stringify({
+		"tags":[`${PARENT_PERM_LINK}`,`${OTHER_TAGS}`],
+		"links":[`https://steemit.com/@${WC_HOLDEM_AC}/`],
+		"app":"steemit/0.1",
+		"format":"markdown"
+	});
 	for(let i=0;i<3;i++){
 		let name = rankers[i].name.replace('@','');
-		let tmsg = `Congratulations @${name} ! you got ${rank[i]} prize of holdem round ${round}.`;
+		let tmsg = `Congratulations @${name} ! you got ${prize[i].toFixed(3)} ${WC_HOLDEM_TYPE} ${rank[i]} prize of holdem round ${round}.\nsee more info at https://steemit.com/@wcasino.holdem\n`;
 		await wtransfer.sendFromHoldem(name, `${prize[i].toFixed(3)} ${WC_HOLDEM_TYPE}`, tmsg);
 		wlog.info(tmsg);
 		await sleep(WC_TRANS_SLEEP);	// 송금 후 3초간 쉰다
+
+		// 1~3등 최신글의 (1000블럭 조회) 댓글에 당첨 사실과 당첨금액 참여링크 정보를 포함하여 댓글을 작성한다
+		let reply = await getRecentComment(name);
+		if(reply){
+			await steem.broadcast.commentAsync(
+				WC_HOLDEM_KEY_POSTING, reply.author, reply.permlink, WC_HOLDEM_AC, 
+				reply.permlink+'-reply', '', tmsg +`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`
+				, replyJsonMetadata
+			);
+			await sleep(WC_TRANS_SLEEP);	// 댓글 후 3초간 쉰다
+		}
 	}
+
+	// { parent_author: 'hyokhyok',
+ //  parent_permlink: 're-wonsama-tt20181006t193901581z-20181007t080251111z',
+ //  author: 'wonsama',
+ //  permlink:
+ //   're-hyokhyok-re-wonsama-tt20181006t193901581z-20181007t122538167z',
+ //  title: '',
+ //  body: '넵 :) 오랜만에 가족 나들이를 다녀와 넘 즐거운 하루 였네요 ㅎㅎ',
+ //  json_metadata: '{"tags":["tripsteem"],"app":"steemit/0.1"}' }
 
 	// 젝팟 당첨자 : 송금 처리를 수행한다
 	if(bonus>0){
@@ -213,7 +241,7 @@ fn.roundEnd = async () =>{
 	let hbalance = await getBalance(WC_HOLDEM_AC, WC_HOLDEM_TYPE);	// holdem 계정의 스팀 잔액을 반환한다
 	// 팬딩된 계정 수 x 금액 부분은 제외 한 상태에서 보낸다
 	let pendings = await fn.getPending();
-	hbalance = hbalance - (pendings.length) * WC_HOLDEM_PRICE;
+	hbalance = hbalance - (pendings.length * Number(WC_HOLDEM_PRICE));
 
 	if(hbalance>0){
 		let pmsg = `Round ${round} remain money transfer.`;
@@ -229,7 +257,7 @@ fn.roundEnd = async () =>{
 	ndate.setTime(nextmili);
 
 	body.push(``);
-	body.push(`next round will open at ${ndate.toJSON()} !`);
+	body.push(`next round will open at ${dateformat(ndate,'yy.mm.dd HH:MM:ss')} !`);
 	body.push(`<center>`);
 	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	body.push(`</center>`);
@@ -284,7 +312,7 @@ fn.update = async ()=>{
 	let permlink = `holdem-round-${round}`;
 	let title = `[holdem] round ${round} game is playing, join now !`;
 	let jsonMetadata = JSON.stringify({
-		"tags":[`${PARENT_PERM_LINK}`],
+		"tags":[`${PARENT_PERM_LINK}`, `${OTHER_TAGS}`],
 		"image":["https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg"],
 		"links":[`https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`],
 		"app":"steemit/0.1",
