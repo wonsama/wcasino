@@ -206,7 +206,7 @@ fn.roundEnd = async () =>{
 		if(reply){
 			await steem.broadcast.commentAsync(
 				WC_HOLDEM_KEY_POSTING, reply.author, reply.permlink, WC_HOLDEM_AC, 
-				reply.permlink+'-reply', '', tmsg +`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`
+				reply.permlink+`-reply-${rank[i]}`, '', tmsg +`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`
 				, replyJsonMetadata
 			);
 			await sleep(WC_TRANS_SLEEP);	// 댓글 후 3초간 쉰다
