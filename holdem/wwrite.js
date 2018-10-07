@@ -39,7 +39,7 @@ const WC_TRANS_SLEEP = process.env.WC_TRANS_SLEEP;
 
 const PARENT_PERM_LINK = `wcasino`;	// category
 const CARD_MAX_DRAW = 23;
-const OTHER_TAGS = [`${PARENT_PERM_LINK}`, 'game', 'games', 'gamble', 'gaming'];
+const OTHER_TAGS = [`${PARENT_PERM_LINK}`, 'game', 'games', 'gamble', 'gaming', 'steemit'];
 
 const HOLDEM_GUIDE_LINK = `https://steemit.com/wcasino/@wcasino/holdem-how-to-play-v0-1`;
 
