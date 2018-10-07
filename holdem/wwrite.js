@@ -314,7 +314,7 @@ fn.update = async ()=>{
 	let permlink = `holdem-round-${round}`;
 	let title = `[holdem] round ${round} game is playing, join now !`;
 	let jsonMetadata = JSON.stringify({
-		"tags": OTHER_TAGS
+		"tags": OTHER_TAGS,
 		"image":["https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg"],
 		"links":[`https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`],
 		"app":"steemit/0.1",
