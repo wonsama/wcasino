@@ -81,8 +81,9 @@ fn.roundEnd = async () =>{
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`blockchain based transparent game`);
-	body.push(`current jackpot(${WC_JACKPOT_AC})`);
-	body.push(`<h1>balance is ${balance} STEEM</h1>`);
+	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is`);
+	body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
+	body.push(`GET all ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLASH`);
 	body.push(`</center>`);
 	body.push(``);
 	body.push(`# holdem ${round} th round `);
@@ -114,7 +115,8 @@ fn.roundEnd = async () =>{
 	body.push(`\`\`\``);
 	body.push(``);
 	body.push(`<center>`);
-	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
+	body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
+	body.push(`<h1>[( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
 	body.push(`</center>`);
 	body.push(``);
 	body.push(`---`);
@@ -333,7 +335,9 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`blockchain based transparent game`);
-	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is ${balance} ${WC_HOLDEM_TYPE}`);
+	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is`);
+	body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
+	body.push(`GET all ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLASH`);
 	body.push(`</center>`);
 	body.push(``);
 	body.push(`# holdem ${round} th round `);
@@ -360,7 +364,8 @@ fn.update = async ()=>{
 	body.push(`Current joined ${joins.length}/${CARD_MAX_DRAW} users.`);
 	body.push(``);
 	body.push(`<center>`);
-	body.push(`<h1>[JOIN HOLDEM NOW ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
+	body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
+	body.push(`<h1>[( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
 	body.push(`</center>`);
 	// body.push(`Testing now ! don't transfer steem !`);
 	body.push(`<center>`);
