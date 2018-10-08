@@ -361,6 +361,9 @@ fn.update = async ()=>{
 	body.push(`|no |author |c1 |c2 |time (utc+9) |`);
 	body.push(`|---|---|---|---|---|`);
 
+	const PRIZE_AMT = Number(WC_HOLDEM_PRICE) * CARD_MAX_DRAW;
+	let prize = [PRIZE_AMT*0.5, PRIZE_AMT*0.3, PRIZE_AMT*0.1];
+
 	let no = 1;
 	for(let j of joins){
 		let time =  j.timestamp.indexOf("Z")>0?j.timestamp:j.timestamp+".000Z";
@@ -375,6 +378,7 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
+	body.push(`1st : ${prize[0].toFixed(3)} ${WC_HOLDEM_TYPE} / 2nd : ${prize[1].toFixed(3)} ${WC_HOLDEM_TYPE} / 3rd : ${prize[2].toFixed(3)} ${WC_HOLDEM_TYPE}`)
 	body.push(`( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )`);
 	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
 	body.push(`</center>`);
