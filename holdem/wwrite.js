@@ -265,11 +265,10 @@ fn.roundEnd = async () =>{
 
 	body.push(``);
 	body.push(`next round will open at ${dateformat(ndate,'yy.mm.dd HH:MM:ss')} !`);
+	body.push(``);
 	body.push(`<center>`);
-	body.push(`[JOIN HOLDEM NEXT ROUND ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
-	body.push(`</center>`);
-	// body.push(`Testing now ! don't transfer steem !`);
-	body.push(`<center>`);
+	body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
+	body.push(`( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )`);
 	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
 	body.push(`</center>`);
 	body.push(``);
@@ -365,13 +364,10 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
-	body.push(`<h1>[( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
-	body.push(`</center>`);
-	// body.push(`Testing now ! don't transfer steem !`);
-	body.push(`<center>`);
+	body.push(`( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )`);
 	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
 	body.push(`</center>`);
-
+	
 	let sendMessage = await steem.broadcast.commentAsync(
 		WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
 		permlink, title, body.join('\n'), jsonMetadata
