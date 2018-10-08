@@ -18,12 +18,15 @@ let fn = {};
 fn.getRecentComment = async(author, from=-1, limit=200)=>{
 	let [err, data] = await to(steem.api.getAccountHistoryAsync(author, from, limit));
 	
-	data.sort((a,b)=>b[0]-a[0]);
-	data = data.filter(x=>x[1]&&x[1].op[0]&&x[1].op[0]=='comment'&&x[1].op[1].author==author);
+	if(data){
+		data.sort((a,b)=>b[0]-a[0]);
+		data = data.filter(x=>x[1]&&x[1].op[0]&&x[1].op[0]=='comment'&&x[1].op[1].author==author);
 
-	if(data.length>0){
-		return Promise.resolve(data[0][1].op[1]);
+		if(data.length>0){
+			return Promise.resolve(data[0][1].op[1]);
+		}
 	}
+	
 	return Promise.resolve(undefined);
 }
 

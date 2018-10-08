@@ -50,4 +50,60 @@ fn.to = (promise) =>{
   .catch(err=>[err]);
 }
 
+fn.question = (msg)=>{
+  return new Promise((resolve, reject)=>{
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    try{
+      rl.question(msg, answer=>{
+          rl.close();
+          resolve(answer);
+      });
+    }catch(e){
+      reject(e);
+    }
+  });
+}
+
+fn.getInfoFromLink = (link)=>{
+
+  // https:// 부분은 cut
+  // 이후 구성 [ 도메인 - 태그 - 저자 - 펌링크 ]
+  let infos = link.substr(8).split('/');
+
+  if(!infos || infos.length!=4){
+
+    let msg = [];
+    msg.push(`입력받은 ${link} 는 올바른 주소 형식이 아닙니다.`);
+    msg.push('sample link : https://steemit.com/kr/@wonsama/kr-dev-krob');
+
+    return {
+      data:{
+        domain: '',
+        category: '',
+        author: '',
+        permlink: ''
+      },
+      ok:false,
+      cd:999,
+      msg:msg.join('\n')
+    }
+  }
+
+  return {
+    data:{
+      domain: infos[0],
+      category: infos[1],
+      author: infos[2].substr(1),
+      permlink: infos[3]
+    },
+    ok:true,
+    cd:0, /* 0 : 정상, 양수 : 비정상, 추후 코드별 분기(로컬라이징, 코드메시지) 필요 */
+    msg:'success'
+  }
+}
+
 module.exports = fn;
