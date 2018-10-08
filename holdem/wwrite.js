@@ -83,7 +83,10 @@ fn.roundEnd = async () =>{
 	body.push(`blockchain based transparent game`);
 	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is`);
 	body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
-	body.push(`GET all ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLASH`);
+	body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLASH`);
+	body.push(`STRAIGHT_FLASH : 10%`);
+	body.push(`FOUR_CARD : 5%`);
+	body.push(`FULL_HOUSE : 1%`);
 	body.push(`</center>`);
 	body.push(``);
 	body.push(`# holdem ${round} th round `);
