@@ -114,11 +114,11 @@ fn.roundEnd = async () =>{
 	body.push(`${deck}`);
 	body.push(`\`\`\``);
 	body.push(``);
-	body.push(`<center>`);
-	body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
-	body.push(`<h1>[( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
-	body.push(`</center>`);
-	body.push(``);
+	// body.push(`<center>`);
+	// body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
+	// body.push(`<h1>[( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
+	// body.push(`</center>`);
+	// body.push(``);
 	body.push(`---`);
 	body.push(``);
 
@@ -136,10 +136,15 @@ fn.roundEnd = async () =>{
 
 	// TODO : jackpot 계정 잔액확인 
 
-	body.push(`community card is ${cards[0][0].value}, ${cards[0][1].value}, ${cards[0][2].value}`);
+	body.push(`<center>`);
+	body.push(`community card is `);
+	body.push(`<h1>${cards[0][0].value}, ${cards[0][1].value}, ${cards[0][2].value}</h1>`);
+	body.push(`</center>`);
 	body.push(``);
 	body.push('---');
-	body.push('Congratulations !');
+	body.push(``);
+	body.push('<h1>Congratulations !</h1>');
+	body.push(``);
 	body.push('---');
 	for(let r of rankers){
 		body.push(`${idx>=3?(idx+1)+'th':rank[idx]} : [${r.idx}] ${r.name} ${r.jokboe} ${wcard.getNums(r)} ${r.valuec} `);
