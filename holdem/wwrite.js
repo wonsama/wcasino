@@ -42,7 +42,9 @@ const CARD_MAX_DRAW = 23;
 const OTHER_TAGS = [`${PARENT_PERM_LINK}`, 'game', 'games', 'gamble', 'gaming', 'steemit'];
 
 const HOLDEM_GUIDE_LINK = `https://steemit.com/wcasino/@wcasino/holdem-how-to-play-v0-1`;
+const INTRO_IMAGE_LINK = `https://cdn.steemitimages.com/DQmZwxsSEVFWmnayMTxJY6YjGGRcPTv3C4JWbBD1HLXozrn/tholdem.png`;
 
+// https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg
 let fn = {};
 
 /*
@@ -63,7 +65,7 @@ fn.roundEnd = async () =>{
 	let title = `[holdem] round ${round} game is done ! view results.`;
 	let jsonMetadata = JSON.stringify({
 		"tags":OTHER_TAGS,
-		"image":["https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg"],
+		"image":[`${INTRO_IMAGE_LINK}`],
 		"links":[`https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`],
 		"app":"steemit/0.1",
 		"format":"markdown"
@@ -72,14 +74,15 @@ fn.roundEnd = async () =>{
 	let body = [];
 	
 	body.push(`<center>`);
-	body.push(`https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg`);
+	body.push(`${INTRO_IMAGE_LINK}`);
 	body.push(`</center>`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`blockchain based transparent game`);
-	body.push(`current jackpot(${WC_JACKPOT_AC}) balance is ${balance} STEEM`);
+	body.push(`current jackpot(${WC_JACKPOT_AC})`);
+	body.push(`<h1>balance is ${balance} STEEM</h1>`);
 	body.push(`</center>`);
 	body.push(``);
 	body.push(`# holdem ${round} th round `);
@@ -315,7 +318,7 @@ fn.update = async ()=>{
 	let title = `[holdem] round ${round} game is playing, join now !`;
 	let jsonMetadata = JSON.stringify({
 		"tags": OTHER_TAGS,
-		"image":["https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg"],
+		"image":[`${INTRO_IMAGE_LINK}`],
 		"links":[`https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`],
 		"app":"steemit/0.1",
 		"format":"markdown"
@@ -323,7 +326,7 @@ fn.update = async ()=>{
 	let body = [];
 
 	body.push(`<center>`);
-	body.push(`https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg`);
+	body.push(`${INTRO_IMAGE_LINK}`);
 	body.push(`</center>`);
 	body.push(``);
 	body.push(`---`);
@@ -357,7 +360,7 @@ fn.update = async ()=>{
 	body.push(`Current joined ${joins.length}/${CARD_MAX_DRAW} users.`);
 	body.push(``);
 	body.push(`<center>`);
-	body.push(`[JOIN HOLDEM NOW ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
+	body.push(`<h1>[JOIN HOLDEM NOW ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
 	body.push(`</center>`);
 	// body.push(`Testing now ! don't transfer steem !`);
 	body.push(`<center>`);
