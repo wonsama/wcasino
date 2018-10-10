@@ -42,8 +42,8 @@ const CARD_MAX_DRAW = 23;
 const OTHER_TAGS = [`${PARENT_PERM_LINK}`, 'game', 'games', 'gamble', 'gaming', 'steemit'];
 
 const HOLDEM_GUIDE_LINK = `https://steemit.com/wcasino/@wcasino/holdem-how-to-play-v0-1`;
-const INTRO_IMAGE_LINK = `https://cdn.steemitimages.com/DQmZwxsSEVFWmnayMTxJY6YjGGRcPTv3C4JWbBD1HLXozrn/tholdem.png`;
-
+// const INTRO_IMAGE_LINK = `https://cdn.steemitimages.com/DQmZwxsSEVFWmnayMTxJY6YjGGRcPTv3C4JWbBD1HLXozrn/tholdem.png`;
+const INTRO_IMAGE_LINK = `https://steemitimages.com/0x0/https://cdn.steemitimages.com/DQma8udQGsJNhoLiVJbbYSLb2VXX8hztRbNAR4k3sdqiJgx/holdem_1010.jpg`;
 // https://cdn.steemitimages.com/DQmZdCWjgKT3HPT1S6wim4AeDf6xNCA7kfHBZ5LfYisqWv1/wcasino.jpg
 let fn = {};
 
