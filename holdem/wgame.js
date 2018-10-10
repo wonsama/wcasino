@@ -9,11 +9,13 @@ const {sha256} = require('../util/wcrypto');
 const wcard = require('./wcard');
 const wtransfer = require('./wtransfer');
 const wwrite = require('./wwrite');
+const wsteem = require('../util/wsteem');
 const {getLastBlockNumer} = require('../util/wblock');
 
 // 기타 상수
 const SEP = require('path').sep;
 const PROJECT_ROOT = process.env.PROJECT_ROOT;
+const WC_HOLDEM_PRICE = process.env.WC_HOLDEM_PRICE;
 const WC_CONFIG_FOLDER = `${PROJECT_ROOT}${SEP}config`;
 const WC_LOG_FOLDER = `${PROJECT_ROOT}${SEP}logs${SEP}wc`;
 const WC_ROUND_FOLDER = `${PROJECT_ROOT}${SEP}logs${SEP}round`;
@@ -179,13 +181,26 @@ fn.setPending = async (games) =>{
 
 	for(let g of games){
 		// 필요한 데이터만 추출하여 파일 기록
-		data.push({
-			timestamp : g.timestamp,
-			block_num : g.block_num,
-			transaction_num : g.transaction_num,
-			from : g.operation[1].from
-		});
-		wlog.info(JSON.stringify(g));
+		let amount = wsteem.getAmount(g.operation[1].amount).num;
+		let count = Math.round(amount / Number(WC_HOLDEM_PRICE));
+		for(let i=0;i<count;i++){
+			data.push({
+				timestamp : g.timestamp,
+				block_num : g.block_num,
+				transaction_num : g.transaction_num,
+				from : g.operation[1].from
+			});	
+		}
+		wlog.info(`from : ${g.operation[1].from}, amount : ${amount}, count : ${count}`);
+
+// 		"{\"timestamp\":\"2018-10-10T14:48:24\",
+// \"block_num\":26688067,
+// \"transaction_num\":26,
+// \"operation\":[\"transfer\",
+// {\"from\":\"wdev\",\"to\":\"wcasino.holdem\",\"amount\":\"0.100 SBD\",\"memo\":\"join\"}]}"		
+
+
+		// wlog.info(JSON.stringify(g));
 	}
 
 	try{
