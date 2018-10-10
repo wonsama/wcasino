@@ -185,6 +185,7 @@ fn.setPending = async (games) =>{
 			transaction_num : g.transaction_num,
 			from : g.operation[1].from
 		});
+		wlog.info(JSON.stringify(g));
 	}
 
 	try{

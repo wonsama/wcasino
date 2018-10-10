@@ -180,7 +180,7 @@ fn.getGames = (transfers) =>{
 	return transfers.filter(x=>{
 		let op = x.operation[1];
 		let num = wsteem.getAmount(op.amount).num;
-		if(num==Number(WC_HOLDEM_PRICE) && op.memo==WC_HOLDEM_MEMO){
+		if(num>=Number(WC_HOLDEM_PRICE) && op.memo==WC_HOLDEM_MEMO){
 			return true;
 		}
 		return false;
