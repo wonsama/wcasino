@@ -192,15 +192,6 @@ fn.setPending = async (games) =>{
 			});	
 		}
 		wlog.info(`from : ${g.operation[1].from}, amount : ${amount}, count : ${count}`);
-
-// 		"{\"timestamp\":\"2018-10-10T14:48:24\",
-// \"block_num\":26688067,
-// \"transaction_num\":26,
-// \"operation\":[\"transfer\",
-// {\"from\":\"wdev\",\"to\":\"wcasino.holdem\",\"amount\":\"0.100 SBD\",\"memo\":\"join\"}]}"		
-
-
-		// wlog.info(JSON.stringify(g));
 	}
 
 	try{
