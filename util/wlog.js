@@ -24,7 +24,8 @@ const LOG_LEVEL = {TRACE:0, DEBUG:1, INFO:2, WARN:3, ERROR:4 }  // INFO 레벨 �
 */
 let log = (msg, level=LOG_LEVEL.DEBUG) => {
 
-  let message = `[${LOG_SHOW_PREFIX[level]}][${new Date().toISOString()}] ${JSON.stringify(msg)}`;
+  // let message = `[${LOG_SHOW_PREFIX[level]}][${new Date().toISOString()}] ${JSON.stringify(msg)}`;
+  let message = `[${LOG_SHOW_PREFIX[level]}][${dateformat(new Date(), 'yy.mm.dd HH:MM:ss')}] ${JSON.stringify(msg)}`;
 
   // 화면로깅 : DEBUG 이상 
   if(level>=LOG_LEVEL.DEBUG){

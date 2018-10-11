@@ -91,8 +91,19 @@ fn.joinGame = async (pen, round) =>{
 		await wfile.write(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`, JSON.stringify(joins));
 
 		// 대기 기록정보에서 제거처리
+		
 		let pending = JSON.parse(await wfile.read(WC_PENDING_FILE));
-		let filtered = pending.filter(x=>!(x.block_num==pen.block_num && x.transaction_num==pen.transaction_num && x.from==pen.from));
+		// let filtered = pending.filter(x=>!(x.block_num==pen.block_num && x.transaction_num==pen.transaction_num && x.from==pen.from));
+		let filtered = [];
+		let isFilteredFind = false;
+		for(let p of pending){
+			if(!isFilteredFind && p.block_num==pen.block_num && p.transaction_num==pen.transaction_num && p.from==pen.from){
+				// 한번에 다건 송금인 경우가 존재 하므로 filter를 할 때 매칭되는 1개 정보만 제거하도록 한다
+				isFilteredFind = true;
+			}else{
+				filtered.push(p);
+			}
+		}
 		await wfile.write(WC_PENDING_FILE, JSON.stringify(filtered));
 
 		// 송금자에게 게임에 조인되었다고 알려주기 메모 전송
