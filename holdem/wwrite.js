@@ -63,7 +63,7 @@ fn.roundEnd = async () =>{
 	let cards = JSON.parse(await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.cards.wc`));
 
 	let permlink = `holdem-round-${round}`;
-	let title = `[holdem] round ${round} is end ! view results.`;
+	let title = `[HOLDME] ROUND ${round} IS END ! VIEW RESULT.`;
 	let jsonMetadata = JSON.stringify({
 		"tags":OTHER_TAGS,
 		"image":[`${END_IMAGE_LINK}`],
@@ -81,23 +81,23 @@ fn.roundEnd = async () =>{
 	body.push(`---`);
 	body.push(``);
 	body.push(`<center>`);
-	body.push(`blockchain based transparent game`);
+	body.push(`Blockchain based transparent game`);
 	body.push(`블록체인 기반 투명한 게임`);
-	body.push(`current jackpot(@${WC_JACKPOT_AC}) balance is`);
+	body.push(`Current jackpot(@${WC_JACKPOT_AC}) balance is`);
 	body.push(`현재 젝팟(@${WC_JACKPOT_AC}) 잔액은`);
 	body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
 	body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLASH`);
 	body.push(`STRAIGHT_FLASH : 10%`);
 	body.push(`FOUR_CARD : 5%`);
 	body.push(`FULL_HOUSE : 1%`);
-	body.push(`위 카드가 나오면 젯팟 계정에서 해당 금액(%대비)을 추가로 수여합니다.`);
+	body.push(`위 카드가 나오면 젝팟 계정에서 해당 금액(%대비)을 추가로 수여합니다.`);
 	body.push(`</center>`);
 	body.push(``);
-	body.push(`# holdem ${round} th round `);
+	body.push(`# HOLDEM ROUND ${round}`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
-	body.push(`* card hash code : ${hashcode}`);
+	body.push(`* Card hash code : ${hashcode}`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
@@ -115,7 +115,7 @@ fn.roundEnd = async () =>{
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
-	body.push(`round ${round} is end, see original deck info ! (if you hashing sha256 below deck info, you will see upper "card hash code" )`);
+	body.push(`Round ${round} is end, see original deck info ! (if you hashing sha256 below deck info, you will see upper "card hash code" )`);
 	body.push(`라운드 ${round} 이 종료되었습니다, 실제 댁 정보를 확인하세요 ! (아래 댁 정보를 sha256으로 hashing하면, 위의 카드 해쉬코드(card hash code)를 확인 할 수 있습니다. )`);
 	body.push(``);
 	body.push(`\`\`\``);
@@ -129,7 +129,7 @@ fn.roundEnd = async () =>{
 	let idx = 0;
 	let rankers = wcard.getRanker(joins, joins.length);
 	body.push(`<center>`);
-	body.push(`community card is `);
+	body.push(`Community card is `);
 	body.push(`커뮤니티 카드는`);
 	body.push(`<h1>${cards[0][0].value}, ${cards[0][1].value}, ${cards[0][2].value}</h1>`);
 	body.push(`</center>`);
@@ -242,7 +242,7 @@ fn.roundEnd = async () =>{
 	ndate.setTime(nextmili);
 
 	body.push(``);
-	body.push(`next round will open at ${dateformat(ndate,'yy.mm.dd HH:MM:ss')} (utc+9) !`);
+	body.push(`Next round will open at ${dateformat(ndate,'yy.mm.dd HH:MM:ss')} (utc+9) !`);
 	body.push(`다음 라운드는 ${dateformat(ndate,'yy.mm.dd HH:MM:ss')} 에 열립니다. !`);
 	body.push(``);
 	body.push(`<center>`);
@@ -252,10 +252,11 @@ fn.roundEnd = async () =>{
 	joinmsg.push(`[x3 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*3).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	joinmsg.push(`[x1 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*1).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	body.push(joinmsg.join(' | '));
+	body.push(`Join 링크 클릭 시 ctrl을 누르면 새 창으로 열려요(PC기준), 모바일은 꾹눌러 새창열기`);
 	// body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
 	body.push(`1st : ${prize[0].toFixed(3)} ${WC_HOLDEM_TYPE} / 2nd : ${prize[1].toFixed(3)} ${WC_HOLDEM_TYPE} / 3rd : ${prize[2].toFixed(3)} ${WC_HOLDEM_TYPE}`)
 	// body.push(`( join needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )`);
-	body.push(`( join needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} per game )`);
+	body.push(`( Join needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} per game )`);
 	body.push(`게임에 참여하세요 ! 1 게임당 ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}이 필요합니다.`);
 	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
 	body.push(`</center>`);
@@ -307,7 +308,7 @@ fn.update = async ()=>{
 	let joins = JSON.parse(await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`));
 
 	let permlink = `holdem-round-${round}`;
-	let title = `[holdem] (게임진행중) round ${round} is playing, join now !`;
+	let title = `[HOLDEM] (게임진행중) ROUND ${round} IS PLAYING, JOIN NOW !`;
 	let jsonMetadata = JSON.stringify({
 		"tags": OTHER_TAGS,
 		"image":[`${INTRO_IMAGE_LINK}`],
@@ -324,9 +325,9 @@ fn.update = async ()=>{
 	body.push(`---`);
 	body.push(``);
 	body.push(`<center>`);
-	body.push(`blockchain based transparent game`);
+	body.push(`Blockchain based transparent game`);
 	body.push(`블록체인 기반 투명한 게임`);
-	body.push(`current jackpot(@${WC_JACKPOT_AC}) balance is`);
+	body.push(`Current jackpot(@${WC_JACKPOT_AC}) balance is`);
 	body.push(`현재 젝팟(@${WC_JACKPOT_AC}) 잔액은`);
 	body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
 	body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLASH`);
@@ -334,14 +335,14 @@ fn.update = async ()=>{
 	body.push(`FOUR_CARD : 5%`);
 	body.push(`FULL_HOUSE : 1%`);
 	body.push(`FULL_HOUSE : 1%`);
-	body.push(`위 카드가 나오면 젯팟 계정에서 해당 금액(%대비)을 추가로 수여합니다.`);
+	body.push(`위 카드가 나오면 젝팟 계정에서 해당 금액(%대비)을 추가로 수여합니다.`);
 	body.push(`</center>`);
 	body.push(``);
-	body.push(`# holdem ${round} th round `);
+	body.push(`# HOLDEM ROUND ${round}`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
-	body.push(`* card hash code : ${hashcode}`);
+	body.push(`* Card hash code : ${hashcode}`);
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
@@ -371,8 +372,9 @@ fn.update = async ()=>{
 	joinmsg.push(`[x3 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*3).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	joinmsg.push(`[x1 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*1).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	body.push(joinmsg.join(' | '));
+	body.push(`JOIN 링크 클릭 시 ctrl을 누르면 새 창으로 열려요(PC기준), 모바일은 꾹눌러 새창열기`);
 	body.push(`1st : ${prize[0].toFixed(3)} ${WC_HOLDEM_TYPE} / 2nd : ${prize[1].toFixed(3)} ${WC_HOLDEM_TYPE} / 3rd : ${prize[2].toFixed(3)} ${WC_HOLDEM_TYPE}`)
-	body.push(`( join needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} per game )`);
+	body.push(`( Join needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} per game )`);
 	body.push(`게임에 참여하세요 ! 1 게임당 ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}이 필요합니다.`);
 	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
 	body.push(`</center>`);
