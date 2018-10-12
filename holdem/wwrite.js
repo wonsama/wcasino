@@ -274,6 +274,8 @@ fn.roundEnd = async () =>{
 	await wfile.write(WC_ROUND_FILE, round+1);
 
 	// 다음 라운드 글을 미리 작성
+	// [I][18.10.12 16:38:12] "Round 38 jackpot money transfer."
+	// [E][18.10.12 16:38:18] "Error: ENOENT: no such file or directory, open '/home/bc/dev/wcasino/logs/round/holdem.round.39.sha256.wc'"
 	await fn.update();
 
 	let completeMessage = `Round ${round} is end and contents is update : see at https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`;
@@ -304,9 +306,19 @@ fn.update = async ()=>{
 
 	// 라운드+참여 정보 로딩	
 	let round = Number(await wfile.read(WC_ROUND_FILE));
-	let hashcode = await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.sha256.wc`);
-	let joins = JSON.parse(await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`));
+	let hashcode;
+	let joins;
 
+	try{
+		hashcode = await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.sha256.wc`);
+		joins = JSON.parse(await wfile.read(`${WC_ROUND_FOLDER}/holdem.round.${round}.join.wc`));	
+	}catch(e){
+		// 초기 0명 진입시에는 파일이 생성되지 않아서 그냥 '' 처리
+		// file not found 임
+		hashcode = '';
+		joins = [];
+	}
+	
 	let permlink = `holdem-round-${round}`;
 	let title = `[HOLDEM] (게임진행중) ROUND ${round} IS PLAYING, JOIN NOW !`;
 	let jsonMetadata = JSON.stringify({
@@ -342,7 +354,9 @@ fn.update = async ()=>{
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
-	body.push(`* Card hash code : ${hashcode}`);
+	if(hashcode!=''){
+		body.push(`* Card hash code : ${hashcode}`);	
+	}
 	body.push(``);
 	body.push(`---`);
 	body.push(``);
