@@ -376,9 +376,9 @@ fn.update = async ()=>{
 	body.push(`---`);
 	body.push(``);
 	body.push(`Current joined ${joins.length}/${CARD_MAX_DRAW} users.`);
-	body.push(`Contents will update ( 0, 5, 10, 15 and game complete )`);
+	// body.push(`Contents will update ( 0, 5, 10, 15 and game complete )`);
 	body.push(`\`현재 참여자는 ${joins.length}/${CARD_MAX_DRAW} 명 입니다.\``);
-	body.push(`\`참여 정보는 0회, 5회, 10회, 15회 그리고 게임 종료 시 업데이트 됩니다.\``);
+	// body.push(`\`참여 정보는 0회, 5회, 10회, 15회 그리고 게임 종료 시 업데이트 됩니다.\``);
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`<h1>JOIN HOLDEM NOW</h1>`);
@@ -394,13 +394,13 @@ fn.update = async ()=>{
 	body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
 	body.push(`</center>`);
 	
-	if(joins.length==0 || joins.length==5 || joins.length==10 || joins.length==15){
+	// if(joins.length==0 || joins.length==5 || joins.length==10 || joins.length==15){
 		let sendMessage = await steem.broadcast.commentAsync(
 			WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
 			permlink, title, body.join('\n'), jsonMetadata
 		);
 
-	}
+	// }
 	let completeMessage = `Round ${round} ( ${joins.length}/${CARD_MAX_DRAW} ) contents is update : see at https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`;
 	wlog.info(completeMessage);
 
