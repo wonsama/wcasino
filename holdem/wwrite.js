@@ -27,8 +27,6 @@ const WC_HOLDEM_KEY_POSTING = process.env.WC_HOLDEM_KEY_POSTING;
 const WC_HOLDEM_AC = process.env.WC_HOLDEM_AC;
 const WC_HOLDEM_NEXT_MIN = Number(process.env.WC_HOLDEM_NEXT_MIN);
 
-const WC_PAY_AC = process.env.WC_PAY_AC;
-
 const SEP = require('path').sep;
 const WC_ROUND_FOLDER = `${PROJECT_ROOT}${SEP}logs${SEP}round`;
 const WC_ROUND_FILE = `${PROJECT_ROOT}${SEP}config${SEP}holdem.round.wc`;
