@@ -191,16 +191,18 @@ fn.roundEnd = async () =>{
 		wlog.info(tmsg);
 		await sleep(WC_TRANS_SLEEP);	// 송금 후 3초간 쉰다
 
-		// 1~3등 최신글의 (1000블럭 조회) 댓글에 당첨 사실과 당첨금액 참여링크 정보를 포함하여 댓글을 작성한다
-		let reply = await getRecentComment(name);
-		if(reply){
-			await steem.broadcast.commentAsync(
-				WC_HOLDEM_KEY_POSTING, reply.author, reply.permlink, WC_HOLDEM_AC, 
-				reply.permlink+`-reply-${rank[i]}`, '', tmsg +`[JOIN HOLDEM ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`
-				, replyJsonMetadata
-			);
-			wlog.info(`reply :: https://steemit.com/@${WC_HOLDEM_AC}/${reply.permlink}-reply-${rank[i]}`);
-			await sleep(WC_TRANS_SLEEP);	// 댓글 후 3초간 쉰다
+		// 1등 최신글의 (1000블럭 조회) 댓글에 당첨 사실과 당첨금액 참여링크 정보를 포함하여 댓글을 작성한다
+		if(i==0){
+			let reply = await getRecentComment(name);
+			if(reply){
+				await steem.broadcast.commentAsync(
+					WC_HOLDEM_KEY_POSTING, reply.author, reply.permlink, WC_HOLDEM_AC, 
+					reply.permlink+`-reply-${rank[i]}`, '', tmsg +`[JOIN HOLDEM ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`
+					, replyJsonMetadata
+				);
+				wlog.info(`reply :: https://steemit.com/@${WC_HOLDEM_AC}/${reply.permlink}-reply-${rank[i]}`);
+				await sleep(WC_TRANS_SLEEP);	// 댓글 후 3초간 쉰다
+			}
 		}
 	}
 

@@ -502,7 +502,9 @@ fn.makeDeck = () =>{
 */
 fn.shuffleCards = (cards) =>{
 
-	for(let i=0;i<cards.length;i++){
+	// 
+	const SHUFFLE_TIMES = 10;
+	for(let i=0;i<cards.length*SHUFFLE_TIMES;i++){
 		let rnd = Math.floor(Math.random()*cards.length);
 		cards.splice(rnd, 0, cards.shift());
 	}
