@@ -84,8 +84,8 @@ fn.roundEnd = async () =>{
 	body.push(`Current jackpot(@${WC_JACKPOT_AC}) balance is`);
 	body.push(`\`현재 젝팟(@${WC_JACKPOT_AC}) 잔액은\``);
 	body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
-	body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLASH`);
-	body.push(`STRAIGHT_FLASH : 10%`);
+	body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLUSH`);
+	body.push(`STRAIGHT_FLUSH : 10%`);
 	body.push(`FOUR_CARD : 5%`);
 	body.push(`FULL_HOUSE : 1%`);
 	body.push(`\`위 카드가 나오면 젝팟 계정에서 해당 금액(%대비)을 추가로 수여합니다.\``);
@@ -149,8 +149,8 @@ fn.roundEnd = async () =>{
 
 	const PRIZE_AMT = Number(WC_HOLDEM_PRICE) * CARD_MAX_DRAW;
 	wlog.info(`Current remain jackpot( ${WC_JACKPOT_AC} ) balance is ${balance} ${WC_HOLDEM_TYPE}`);
-	let isRSF = rankers[0].jokboe=='ROYAL_STRAIGHT_FLASH'?true:false;		// 100%
-	let isSF = rankers[0].jokboe=='STRAIGHT_FLASH'?true:false;					// 10%
+	let isRSF = rankers[0].jokboe=='ROYAL_STRAIGHT_FLUSH'?true:false;		// 100%
+	let isSF = rankers[0].jokboe=='STRAIGHT_FLUSH'?true:false;					// 10%
 	let isFC = rankers[0].jokboe=='FOUR_CARD'?true:false;							// 5%
 	let isFH = rankers[0].jokboe=='FULL_HOUSE'?true:false;							// 1%
 	let prize = [PRIZE_AMT*0.5, PRIZE_AMT*0.3, PRIZE_AMT*0.1];
@@ -342,8 +342,8 @@ fn.update = async ()=>{
 	body.push(`Current jackpot(@${WC_JACKPOT_AC}) balance is`);
 	body.push(`\`현재 젝팟(@${WC_JACKPOT_AC}) 잔액은\``);
 	body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
-	body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLASH`);
-	body.push(`STRAIGHT_FLASH : 10%`);
+	body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLUSH`);
+	body.push(`STRAIGHT_FLUSH : 10%`);
 	body.push(`FOUR_CARD : 5%`);
 	body.push(`FULL_HOUSE : 1%`);
 	body.push(`\`위 카드가 나오면 젝팟 계정에서 해당 금액(%대비)을 추가로 수여합니다.\``);

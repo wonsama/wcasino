@@ -43,9 +43,9 @@ fn.JOKBO = {
 	FLUSH : 7,
 	FULL_HOUSE : 8,
 	FOUR_CARD : 9,
-	STRAIGHT_FLASH : 10,
-	BACK_STRAIGHT_FLASH : 11,
-	ROYAL_STRAIGHT_FLASH : 12,
+	STRAIGHT_FLUSH : 10,
+	BACK_STRAIGHT_FLUSH : 11,
+	ROYAL_STRAIGHT_FLUSH : 12,
 }
 
 const CARD_TYPE = {... fn.CARD_TYPE};
@@ -61,9 +61,9 @@ const JOKBO_ENG = [
 	'FLUSH',
 	'FULL_HOUSE',
 	'FOUR_CARD',
-	'STRAIGHT_FLASH',
-	'BACK_STRAIGHT_FLASH',
-	'ROYAL_STRAIGHT_FLASH',
+	'STRAIGHT_FLUSH',
+	'BACK_STRAIGHT_FLUSH',
+	'ROYAL_STRAIGHT_FLUSH',
 ];
 const CARD_T = ['♣️','♥️','♦️','♠️'];
 const CARD_N = [2,3,4,5,6,7,8,9,10,'J','Q','K','A'];
@@ -86,7 +86,7 @@ let numToMark = (num)=>{
 * @return 숫자 매칭정보
 */
 fn.getNums = (el) =>{
-	if(['NO_PAIR','STRAIGHT','FLUSH','STRAIGHT_FLASH'].includes(el.jokboe)){
+	if(['NO_PAIR','STRAIGHT','FLUSH','STRAIGHT_FLUSH'].includes(el.jokboe)){
 		// 1 - high card
 		return `( HIGH ${numToMark(el.groupNumbers[0].num)} )`;
 	}	
@@ -98,7 +98,7 @@ fn.getNums = (el) =>{
 		// 2
 		return `( ${numToMark(el.groupNumbers[0].num)}, ${numToMark(el.groupNumbers[1].num)} )`;
 	}
-	return '';	// ROYAL_STRAIGHT_FLASH 
+	return '';	// ROYAL_STRAIGHT_FLUSH 
 }
 
 /*
@@ -426,9 +426,9 @@ fn.jokboCards = (cards, name, idx) =>{
 	let isNoPair = !isStraight&&numbers.length==5;		// 1,1,1,1,1
 
 	let jokbo = JOKBO.NO_PAIR;
-	jokbo = Math.max(isRoyalStraightFlash?JOKBO.ROYAL_STRAIGHT_FLASH:0,jokbo);
-	// jokbo = Math.max(isBackStraightFlash?JOKBO.BACK_STRAIGHT_FLASH:0,jokbo);
-	jokbo = Math.max(isStraightFlash?JOKBO.STRAIGHT_FLASH:0,jokbo);
+	jokbo = Math.max(isRoyalStraightFlash?JOKBO.ROYAL_STRAIGHT_FLUSH:0,jokbo);
+	// jokbo = Math.max(isBackStraightFlash?JOKBO.BACK_STRAIGHT_FLUSH:0,jokbo);
+	jokbo = Math.max(isStraightFlash?JOKBO.STRAIGHT_FLUSH:0,jokbo);
 	jokbo = Math.max(isFourCard?JOKBO.FOUR_CARD:0,jokbo);
 	jokbo = Math.max(isFullHouse?JOKBO.FULL_HOUSE:0,jokbo);
 	jokbo = Math.max(isFlush?JOKBO.FLUSH:0,jokbo);
