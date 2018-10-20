@@ -29,6 +29,8 @@ const CARD_COMMUNITY_DRAW_CNT = 3;
 const CARD_DRAW_CNT = 2;
 const CARD_MAX_DRAW = 23;
 
+const WC_JACKPOT_AC = process.env.WC_JACKPOT_AC;
+
 /*
 	game 진행
 */
@@ -117,7 +119,7 @@ fn.joinGame = async (pen, round) =>{
 				timestamp : new Date().toJSON(),
 				block_num : 0,
 				transaction_num : 0,
-				from : `wcasino.jackpot`,
+				from : WC_JACKPOT_AC,
 				cards : cards[CARD_MAX_DRAW]
 			});
 
