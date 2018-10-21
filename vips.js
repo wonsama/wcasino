@@ -1,5 +1,5 @@
 const fs = require('fs');
-let wcard = require('./holdem/wcard');
+const wcard = require('./holdem/wcard');
 
 function init(){
 	const DEFAULT_ROUND = 10;

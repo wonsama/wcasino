@@ -9,6 +9,7 @@ const dateformat = require('dateformat');
 
 const wtransfer = require('./wtransfer');
 const wcard = require('./wcard');
+const wvips = require('./wvips');
 
 const wlog = require('../util/wlog');
 const wfile = require('../util/wfile');
@@ -245,6 +246,9 @@ fn.roundEnd = async () =>{
 	body.push(`Next round will open at ${dateformat(ndate,'yy.mm.dd HH:MM:ss')} (utc+9) !`);
 	body.push(`\`다음 라운드는 ${dateformat(ndate,'yy.mm.dd HH:MM:ss')} 에 열립니다. !\``);
 	body.push(``);
+	let ranks = wvips.getPrize();
+	body.push(ranks);
+	body.push(``);
 	body.push(`<center>`);
 	body.push(`<h1>JOIN HOLDEM NOW</h1>`);
 	let joinmsg = [];
@@ -379,6 +383,9 @@ fn.update = async ()=>{
 	// body.push(`Contents will update ( 0, 5, 10, 15 and game complete )`);
 	body.push(`\`현재 참여자는 ${joins.length}/${CARD_MAX_DRAW} 명 입니다.\``);
 	// body.push(`\`참여 정보는 0회, 5회, 10회, 15회 그리고 게임 종료 시 업데이트 됩니다.\``);
+	body.push(``);
+	let ranks = wvips.getPrize();
+	body.push(ranks);
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`<h1>JOIN HOLDEM NOW</h1>`);
