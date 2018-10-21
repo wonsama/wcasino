@@ -251,7 +251,7 @@ fn.roundEnd = async () =>{
 	// body.push(`<h1>JACKPOT : ${balance} ${WC_HOLDEM_TYPE}</h1>`);
 	body.push(``);
 	body.push(`<center>`);
-	body.push(`<h1>JACKPOT : ${balance} ${WC_HOLDEM_TYPE}<br>JOIN HOLDEM NOW</h1>`);
+	body.push(`<h1>JACKPOT : ${balance} ${WC_HOLDEM_TYPE}<br><br>JOIN HOLDEM NOW</h1>`);
 	let joinmsg = [];
 	joinmsg.push(`[x5 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*5).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	joinmsg.push(`[x3 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*3).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
@@ -390,7 +390,7 @@ fn.update = async ()=>{
 	// body.push(`<h1>JACKPOT : ${balance} ${WC_HOLDEM_TYPE}</h1>`);
 	body.push(``);
 	body.push(`<center>`);
-	body.push(`<h1>JACKPOT : ${balance} ${WC_HOLDEM_TYPE}<br>JOIN HOLDEM NOW</h1>`);
+	body.push(`<h1>JACKPOT : ${balance} ${WC_HOLDEM_TYPE}<br><br>JOIN HOLDEM NOW</h1>`);
 	let joinmsg = [];
 	joinmsg.push(`[x5 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*5).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	joinmsg.push(`[x3 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*3).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
