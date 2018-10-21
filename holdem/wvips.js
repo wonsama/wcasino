@@ -15,16 +15,17 @@ fn.getPrize = () =>{
 		'https://steemitimages.com/20x0/https://cdn.steemitimages.com/DQmW7cw4wLxasbvCabmLXvmq7vkQekCpB4iAsNwvxH3yijL/league_3.png'
 	];
 
-	let ranks = fn.getRecent();
-	ranks.sort((a,b)=>b.gap-a.gap);
+	let rnumber = 10;
+	let ranks = fn.getRecent(rnumber);
+	ranks.sort((a,b)=>b.earn-a.earn);
 
 	let template = [];
 	template.push(`<center>`);
-	template.push(`Best player in recent 3 rounds`);
-	template.push(`(최근 3게임 최고의 플레이어)`);
-	let r0 = `${ranks[0].name} ${ranks[0].gap} ${WC_HOLDEM_TYPE}`;
-	let r1 = `${ranks[1].name} ${ranks[1].gap} ${WC_HOLDEM_TYPE}`;
-	let r2 = `${ranks[2].name} ${ranks[2].gap} ${WC_HOLDEM_TYPE}`;
+	template.push(`Best player in recent ${rnumber} rounds`);
+	template.push(`(최근 ${rnumber} 게임 최고의 플레이어 : 당첨금기준)`);
+	let r0 = `${ranks[0].name} ${ranks[0].earn} ${WC_HOLDEM_TYPE}`;
+	let r1 = `${ranks[1].name} ${ranks[1].earn} ${WC_HOLDEM_TYPE}`;
+	let r2 = `${ranks[2].name} ${ranks[2].earn} ${WC_HOLDEM_TYPE}`;
 	template.push(`${PRIZE_IMAGES[0]} ${r0} ${PRIZE_IMAGES[1]} ${r1} ${PRIZE_IMAGES[2]} ${r2}`);
 	template.push(`</center>`);
 
@@ -34,7 +35,7 @@ fn.getPrize = () =>{
 /*
 * 최근 3라운드 기준 수익 정보를 반환
 * [ { name: '@ioioioioi', spent: 0.6, earn: 1.84, gap: 1.24 } ... ]
-* @param round 최근 기준 라운드 / 기본 값 3
+* @param round 최근 기준 라운드 / 기본 값 10
 * @return 지출/수익/갭/참여자 목록정보
 */
 fn.getRecent = (round=3) =>{

@@ -248,6 +248,7 @@ fn.roundEnd = async () =>{
 	body.push(``);
 	let ranks = wvips.getPrize();
 	body.push(ranks);
+	body.push(`<h1>JACKPOT : ${balance} ${WC_HOLDEM_TYPE}</h1>`);
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`<h1>JOIN HOLDEM NOW</h1>`);
@@ -256,7 +257,7 @@ fn.roundEnd = async () =>{
 	joinmsg.push(`[x3 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*3).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	joinmsg.push(`[x1 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*1).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	body.push(joinmsg.join(' | '));
-	body.push(`\`Join 링크 클릭 시 ctrl을 누르면 새 창으로 열려요(PC기준), 모바일은 꾹눌러 새창열기\``);
+	// body.push(`\`Join 링크 클릭 시 ctrl을 누르면 새 창으로 열려요(PC기준), 모바일은 꾹눌러 새창열기\``);
 	// body.push(`<h1>[JOIN HOLDEM NOW](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})</h1>`);
 	body.push(`1st : ${prize[0].toFixed(3)} ${WC_HOLDEM_TYPE} / 2nd : ${prize[1].toFixed(3)} ${WC_HOLDEM_TYPE} / 3rd : ${prize[2].toFixed(3)} ${WC_HOLDEM_TYPE}`)
 	// body.push(`( join needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )`);
@@ -386,6 +387,7 @@ fn.update = async ()=>{
 	body.push(``);
 	let ranks = wvips.getPrize();
 	body.push(ranks);
+	body.push(`<h1>JACKPOT : ${balance} ${WC_HOLDEM_TYPE}</h1>`);
 	body.push(``);
 	body.push(`<center>`);
 	body.push(`<h1>JOIN HOLDEM NOW</h1>`);
@@ -394,7 +396,7 @@ fn.update = async ()=>{
 	joinmsg.push(`[x3 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*3).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	joinmsg.push(`[x1 JOIN GAME](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${(Number(WC_HOLDEM_PRICE)*1).toFixed(3)}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`);
 	body.push(joinmsg.join(' | '));
-	body.push(`\`JOIN 링크 클릭 시 ctrl을 누르면 새 창으로 열려요(PC기준), 모바일은 꾹눌러 새창열기\``);
+	// body.push(`\`JOIN 링크 클릭 시 ctrl을 누르면 새 창으로 열려요(PC기준), 모바일은 꾹눌러 새창열기\``);
 	body.push(`1st : ${prize[0].toFixed(3)} ${WC_HOLDEM_TYPE} / 2nd : ${prize[1].toFixed(3)} ${WC_HOLDEM_TYPE} / 3rd : ${prize[2].toFixed(3)} ${WC_HOLDEM_TYPE}`)
 	body.push(`( Join needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} per game )`);
 	body.push(`\`게임에 참여하세요 ! 1 게임당 ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}이 필요합니다.\``);
