@@ -39,6 +39,12 @@ function init(){
                 let refunds = wtransfer.getRefunds(transfers);
                 // await wtransfer.doRefunds(refunds);
 
+                // 자동 참여 정보 확인
+                let auto = wtransfer.getAutoJoin(transfers);
+
+                // TODO : 파일에 자동 참가정보 기록(금액추가)
+                // TODO : (게임 종료 시점에서) 자동 참가 정보에서 대기열 (pending) 정보를 추가한다 
+
                 // 실제 게임 대상 확인
                 let games = wtransfer.getGames(transfers);
 

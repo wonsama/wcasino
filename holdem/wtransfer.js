@@ -16,6 +16,7 @@ const WC_HOLDEM_AC = process.env.WC_HOLDEM_AC;
 const WC_HOLDEM_KEY_ACTIVE = process.env.WC_HOLDEM_KEY_ACTIVE;
 const WC_HOLDEM_KEY_MEMO = process.env.WC_HOLDEM_KEY_MEMO;
 const WC_HOLDEM_MEMO = process.env.WC_HOLDEM_MEMO;
+const WC_HOLDEM_AUTO = process.env.WC_HOLDEM_AUTO;
 const WC_HOLDEM_PRICE = process.env.WC_HOLDEM_PRICE;
 const WC_HOLDEM_TYPE = process.env.WC_HOLDEM_TYPE;
 const WC_TRANS_SLEEP = Number(process.env.WC_TRANS_SLEEP);
@@ -181,6 +182,22 @@ fn.getGames = (transfers) =>{
 		let op = x.operation[1];
 		let num = wsteem.getAmount(op.amount).num;
 		if(num>=Number(WC_HOLDEM_PRICE) && op.memo==WC_HOLDEM_MEMO){
+			return true;
+		}
+		return false;
+	})
+}
+
+/*
+* 자동 참가 정보를 가져온다
+* @param transfers 거래 목록정보
+* @return 게임 자동참가 목록정보
+*/
+fn.getAutoJoin = (transfers) =>{
+	return transfers.filter(x=>{
+		let op = x.operation[1];
+		let num = wsteem.getAmount(op.amount).num;
+		if(num>=Number(WC_HOLDEM_PRICE) && op.memo==WC_HOLDEM_AUTO){
 			return true;
 		}
 		return false;
