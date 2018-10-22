@@ -26,7 +26,7 @@ fn.getPrize = () =>{
 	let r0 = `${ranks[0].name.replace('@','')} ${ranks[0].earn} ${WC_HOLDEM_TYPE}`;
 	let r1 = `${ranks[1].name.replace('@','')} ${ranks[1].earn} ${WC_HOLDEM_TYPE}`;
 	let r2 = `${ranks[2].name.replace('@','')} ${ranks[2].earn} ${WC_HOLDEM_TYPE}`;
-	template.push(`${PRIZE_IMAGES[0]} ${r0}<br/>${PRIZE_IMAGES[1]}<br/>${r1} ${PRIZE_IMAGES[2]} ${r2}`);
+	template.push(`${PRIZE_IMAGES[0]} ${r0}<br/>${PRIZE_IMAGES[1]} ${r1}<br/>${PRIZE_IMAGES[2]} ${r2}`);
 	template.push(`</center>`);
 
 	return template.join('\n');
