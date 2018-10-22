@@ -23,10 +23,10 @@ fn.getPrize = () =>{
 	template.push(`<center>`);
 	template.push(`Best player in recent ${rnumber} rounds`);
 	template.push(`(최근 ${rnumber} 게임 최고의 플레이어 : 당첨금기준)`);
-	let r0 = `${ranks[0].name} ${ranks[0].earn} ${WC_HOLDEM_TYPE}`;
-	let r1 = `${ranks[1].name} ${ranks[1].earn} ${WC_HOLDEM_TYPE}`;
-	let r2 = `${ranks[2].name} ${ranks[2].earn} ${WC_HOLDEM_TYPE}`;
-	template.push(`${PRIZE_IMAGES[0]} ${r0} ${PRIZE_IMAGES[1]} ${r1} ${PRIZE_IMAGES[2]} ${r2}`);
+	let r0 = `${ranks[0].name.replace('@','')} ${ranks[0].earn} ${WC_HOLDEM_TYPE}`;
+	let r1 = `${ranks[1].name.replace('@','')} ${ranks[1].earn} ${WC_HOLDEM_TYPE}`;
+	let r2 = `${ranks[2].name.replace('@','')} ${ranks[2].earn} ${WC_HOLDEM_TYPE}`;
+	template.push(`${PRIZE_IMAGES[0]} ${r0}<br/>${PRIZE_IMAGES[1]}<br/>${r1} ${PRIZE_IMAGES[2]} ${r2}`);
 	template.push(`</center>`);
 
 	return template.join('\n');
