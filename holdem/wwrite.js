@@ -407,13 +407,17 @@ fn.update = async ()=>{
     body.push(`</center>`);
 
     try{
-        let pending = await fn.getPending();        
+        let pending = await fn.getPending();
+        let completeMessage = `Round ${round} ( ${joins.length}/${CARD_MAX_DRAW} ) contents is update : see at https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`;
         if(joins.length==0 || pending.length==0 || joins[joins.length-1].from!=pending[0].from){
             // 참여자가 없거나 / 대기자가 없거나 / 다음 대기자가 본인과 다른 경우에만 글을 업데이트 한다
             let sendMessage = await steem.broadcast.commentAsync(
                 WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
                 permlink, title, body.join('\n'), jsonMetadata
             );
+            wlog.info(completeMessage);
+        }else{
+            wlog.info('skip write ::: 'completeMessage);
         }
     }catch(e){
         // [E][18.10.23 16:57:33] "write error occured : TypeError: Cannot read property 'from' of undefined"
@@ -421,9 +425,6 @@ fn.update = async ()=>{
         await sleep(WC_TRANS_SLEEP);    // 송금 후 3초간 쉰다
     }
     
-    let completeMessage = `Round ${round} ( ${joins.length}/${CARD_MAX_DRAW} ) contents is update : see at https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`;
-    wlog.info(completeMessage);
-
     return Promise.resolve(completeMessage);
 };
 
