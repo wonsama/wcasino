@@ -408,6 +408,12 @@ fn.update = async ()=>{
     
     try{
         let pending = await fn.getPending();
+        if(joins&&joins.length>0){
+            console.log('joins', joins[0]);    
+        }
+        if(pending&&pending.length>0){
+            console.log('pending', pending[0]);
+        }
         if(joins[joins.length-1].from!=pending[0].from){
             let sendMessage = await steem.broadcast.commentAsync(
                 WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
@@ -415,6 +421,7 @@ fn.update = async ()=>{
             );
         }
     }catch(e){
+        // [E][18.10.23 16:57:33] "write error occured : TypeError: Cannot read property 'from' of undefined"
         wlog.error('write error occured : '+e.toString());
         await sleep(WC_TRANS_SLEEP);    // 송금 후 3초간 쉰다
     }
