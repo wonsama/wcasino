@@ -91,6 +91,49 @@ fn.getTransfers = (filtered) =>{
 } 
 
 /*
+* 댓글 목록 정보 가져와서 작업처리
+*/ 
+fn.getComments = (filtered) =>{
+	try{
+		let transfers = filtered.comment.filter(x=>x.operation&&x.operation.length==2&&x.operation[1].to!=WC_HOLDEM_AC);
+		console.log(transfers&&transfers[0]);
+
+		// 거래 정보 파일에 기록
+		// let transMsg = [];
+		// for(let tr of transfers){
+		// 	let msg = JSON.stringify({
+		// 		timestamp:tr.timestamp,
+		// 		// timestamp: dateformat(new Date(tr.timestamp+'.000Z'), 'yy.mm.dd HH:MM:ss'),
+		// 		block_num:tr.block_num,
+		// 		transaction_num:tr.transaction_num,
+		// 		from:tr.operation[1].from,
+		// 		to:tr.operation[1].to,
+		// 		amount:tr.operation[1].amount,
+		// 		memo:tr.operation[1].memo
+		// 	});
+		// 	transMsg.push(msg);
+			
+		// 	// 로깅
+		// 	wlog.info(`transfer : ${msg}`);
+		// }
+
+		// // 파일에 기록 
+		// if(transMsg.length>0){
+		// 	wfile.append(
+		// 		`${WC_FILE_ROOT}holdem.trans.${dateformat(new Date(),'yyyymmdd')}.wc`,
+		// 		transMsg.join('\n')+"\n"
+		// 	);	
+		// }
+		
+		return transfers;
+	}catch(e){
+		// 오류를 기록한다
+		wlog.error(e.stack);
+		return [];
+	}
+} 
+
+/*
 * 환불 대상 목록 정보를 가져온다. 일단은 로깅만 하는 것으로 처리
 * @param transfers 거래 목록정보
 * @return 환불 대상목록정보

@@ -27,6 +27,7 @@ wgame.initFirst();
 function init(){
 
         const MON_TRANSFER = 'transfer';
+        const MON_COMMENT = 'comment';
 
         // 모니터링 수행
         monitor([MON_TRANSFER])

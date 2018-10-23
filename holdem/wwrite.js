@@ -90,6 +90,7 @@ fn.roundEnd = async () =>{
     body.push(`FOUR_CARD : 5%`);
     body.push(`FULL_HOUSE : 1%`);
     body.push(`\`위 카드가 나오면 젝팟 계정에서 해당 금액(%대비)을 추가로 수여합니다.\``);
+    body.push(`<sub>1st only(1등한정)</sub>`);
     body.push(`</center>`);
     body.push(``);
     body.push(`# HOLDEM ROUND ${round}`);
