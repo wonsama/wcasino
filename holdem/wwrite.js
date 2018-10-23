@@ -409,8 +409,10 @@ fn.update = async ()=>{
     let completeMessage = `Round ${round} ( ${joins.length}/${CARD_MAX_DRAW} ) contents is update : see at https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`;
     try{
         let pending = await fn.getPending();
-        if(joins.length==0 || pending.length==0 || joins[joins.length-1].from!=pending[0].from){
-            // 참여자가 없거나 / 대기자가 없거나 / 다음 대기자가 본인과 다른 경우에만 글을 업데이트 한다
+        // 다음 대기자가 본인과 다른 경우에만 글을 업데이트 한다
+        // if(joins.length==0 || pending.length==0 || joins[joins.length-1].from!=pending[0].from){
+        if(joins.length==0 || pending.length==0){
+            // 참여자가 없거나 / 대기자가 없거나
             let sendMessage = await steem.broadcast.commentAsync(
                 WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
                 permlink, title, body.join('\n'), jsonMetadata
