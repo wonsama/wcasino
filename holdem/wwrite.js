@@ -405,16 +405,11 @@ fn.update = async ()=>{
     body.push(`\`게임에 참여하세요 ! 1 게임당 ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE}이 필요합니다.\``);
     body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
     body.push(`</center>`);
-    
+
     try{
-        let pending = await fn.getPending();
-        if(joins&&joins.length>0){
-            console.log('joins', joins[0]);    
-        }
-        if(pending&&pending.length>0){
-            console.log('pending', pending[0]);
-        }
-        if(joins[joins.length-1].from!=pending[0].from){
+        let pending = await fn.getPending();        
+        if(joins.length==0 || pending.length==0 || joins[joins.length-1].from!=pending[0].from){
+            // 참여자가 없거나 / 대기자가 없거나 / 다음 대기자가 본인과 다른 경우에만 글을 업데이트 한다
             let sendMessage = await steem.broadcast.commentAsync(
                 WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
                 permlink, title, body.join('\n'), jsonMetadata
