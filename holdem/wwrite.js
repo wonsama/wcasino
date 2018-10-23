@@ -406,11 +406,19 @@ fn.update = async ()=>{
     body.push(`[Holdem Guide](${HOLDEM_GUIDE_LINK})`);
     body.push(`</center>`);
     
-    let sendMessage = await steem.broadcast.commentAsync(
-        WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
-        permlink, title, body.join('\n'), jsonMetadata
-    );
-
+    try{
+        let pending = await fn.getPending();
+        if(joins[joins.length-1].from!=pending[0].from){
+            let sendMessage = await steem.broadcast.commentAsync(
+                WC_HOLDEM_KEY_POSTING, '', PARENT_PERM_LINK, WC_HOLDEM_AC, 
+                permlink, title, body.join('\n'), jsonMetadata
+            );
+        }
+    }catch(e){
+        wlog.error('write error occured : '+e.toString());
+        await sleep(WC_TRANS_SLEEP);    // 송금 후 3초간 쉰다
+    }
+    
     let completeMessage = `Round ${round} ( ${joins.length}/${CARD_MAX_DRAW} ) contents is update : see at https://steemit.com/${PARENT_PERM_LINK}/@${WC_HOLDEM_AC}/${permlink}`;
     wlog.info(completeMessage);
 
