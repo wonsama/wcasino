@@ -82,9 +82,8 @@ fn.roundEnd = async () =>{
     body.push(`<center>`);
     body.push(`Blockchain based transparent game`);
     body.push(`\`블록체인 기반 투명한 게임\``);
-    body.push(`Current jackpot(@${WC_JACKPOT_AC}) balance is`);
-    body.push(`Additional ${WC_HOLDEM_TYPE} for 1st place `);
-    body.push(`\`현재 젝팟(@${WC_JACKPOT_AC}) 잔액은\``);
+    body.push(`Current jackpot(@${WC_JACKPOT_AC}) balance for 1st place is`);
+    body.push(`\`1등을 위한 젝팟(@${WC_JACKPOT_AC}) 잔액은\``);
     body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
     body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLUSH`);
     body.push(`STRAIGHT_FLUSH : 10%`);
@@ -352,9 +351,8 @@ fn.update = async ()=>{
     body.push(`<center>`);
     body.push(`Blockchain based transparent game`);
     body.push(`\`블록체인 기반 투명한 게임\``);
-    body.push(`Current jackpot(@${WC_JACKPOT_AC}) balance is`);
-    body.push(`Additional ${WC_HOLDEM_TYPE} for 1st place `);
-    body.push(`\`현재 젝팟(@${WC_JACKPOT_AC}) 잔액은\``);
+    body.push(`Current jackpot(@${WC_JACKPOT_AC}) balance for 1st place is`);
+    body.push(`\`1등을 위한 젝팟(@${WC_JACKPOT_AC}) 잔액은\``);
     body.push(`<h1>${balance} ${WC_HOLDEM_TYPE}</h1>`);
     body.push(`GET 100% ${WC_HOLDEM_TYPE} with ROYAL_STRAIGHT_FLUSH`);
     body.push(`STRAIGHT_FLUSH : 10%`);
