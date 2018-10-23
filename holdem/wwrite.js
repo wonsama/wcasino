@@ -417,7 +417,7 @@ fn.update = async ()=>{
             );
             wlog.info(completeMessage);
         }else{
-            wlog.info('skip write ::: 'completeMessage);
+            wlog.info('skip write ::: ' + completeMessage);
         }
     }catch(e){
         // [E][18.10.23 16:57:33] "write error occured : TypeError: Cannot read property 'from' of undefined"
