@@ -1,11 +1,12 @@
 const fs = require('fs');
 const wcard = require('./holdem/wcard');
+const SEP = require('path').sep;
 
 function init(){
 	const DEFAULT_ROUND = 10;
 	let params = process.argv;
 	let round = Number(params[2]);
-	let cround = Number(fs.readFileSync(`${__dirname}/config/holdem.round.wc`, 'utf8'));
+	let cround = Number(fs.readFileSync(`${__dirname}${SEP}config${SEP}holdem.round.wc`, 'utf8'));
 	console.log('cround', cround);
 
 	if(isNaN(round)){
@@ -16,7 +17,7 @@ function init(){
 
 	let spents = {};
 	for(let i=round;i<cround;i++){
-		let path = `${__dirname}/logs/round/holdem.round.${i}.join.wc`;
+		let path = `${__dirname}${SEP}logs${SEP}round${SEP}holdem.round.${i}.join.wc`;
 		let joins = JSON.parse(fs.readFileSync(path, 'utf8'));
 		let ranker = wcard.getRanker(joins, joins.length);
 		
@@ -46,35 +47,3 @@ function init(){
 }
 init();
 
-function trans(){
-	let params = process.argv;
-	let yyyymmdd = Number(params[2]);
-	if(isNaN(yyyymmdd)){
-		console.error('must enter yyyymmdd params');
-		return;
-	}
-
-	let path = `${__dirname}/logs/wc/holdem.trans.${yyyymmdd}.wc`;
-	let reads = fs.readFileSync(path, 'utf8');
-	
-	let joins = {};
-	for(let r of reads.split('\n')){
-		try{
-			let j = JSON.parse(r);
-			let name = j.from;
-			let num = Number(j.amount.split(' ')[0]);
-			if(j.memo=='join'){
-				let x = Number((isNaN(joins[name])?0:joins[name] + num).toFixed(3));
-				joins[name] = x==0?num:x;
-			}
-		}catch(e){}
-	}
-	
-	let out = [];
-	for(let j of Object.entries(joins)){
-		out.push({name:j[0], num:j[1]});
-	}
-	out.sort((a,b)=>b.num-a.num);
-	console.log(out);
-}
-// trans();
