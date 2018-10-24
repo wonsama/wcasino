@@ -34,5 +34,6 @@ function init(){
 	out.sort((a,b)=>b.num-a.num);
 	console.log(out);
 	console.log(`sum : ${Number(sum.toFixed(2))}`);
+	console.log(`joins : ${joins.length}`);
 }
 init();
