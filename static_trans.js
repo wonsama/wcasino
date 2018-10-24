@@ -33,6 +33,6 @@ function init(){
 	}
 	out.sort((a,b)=>b.num-a.num);
 	console.log(out);
-	console.log(`sum : ${sum}`);
+	console.log(`sum : ${Number(sum.toFixed(2))}`);
 }
 init();
