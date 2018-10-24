@@ -27,13 +27,14 @@ function init(){
 	
 	let out = [];
 	let sum = 0;
-	for(let j of Object.entries(joins)){
+	let oe = Object.entries(joins);
+	for(let j of oe){
 		out.push({name:j[0], num:j[1]});
 		sum=sum+Number(j[1]);
 	}
 	out.sort((a,b)=>b.num-a.num);
 	console.log(out);
 	console.log(`sum : ${Number(sum.toFixed(2))}`);
-	console.log(`joins : ${joins.length}`);
+	console.log(`joins : ${oe.length}`);
 }
 init();
