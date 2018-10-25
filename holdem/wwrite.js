@@ -204,9 +204,12 @@ fn.roundEnd = async () =>{
             let reply = await getRecentComment(name);
             if(reply){
                 try{
+
+                    let repmsg = `<center><a href='https://steemit.com/steemit/@steemit.holdem/holdem-round-${round}'><img src='https://steemitimages.com/0x0/https://cdn.steemitimages.com/DQmPakvPfw8iSA7cDYdhVHV4u8PrbMb6PvNpmUXpwpKAjaY/333.gif'><br><sup>${reply.author} got 1st place in round ${round}</sup></a></center>`;
+                    // tmsg +`[JOIN HOLDEM ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`
                     await steem.broadcast.commentAsync(
                         WC_HOLDEM_KEY_POSTING, reply.author, reply.permlink, WC_HOLDEM_AC, 
-                        reply.permlink+`-reply-${rank[i]}`, '', tmsg +`[JOIN HOLDEM ( needs ${WC_HOLDEM_PRICE} ${WC_HOLDEM_TYPE} )  ](https://steemconnect.com/sign/transfer?to=${WC_HOLDEM_AC}&amount=${WC_HOLDEM_PRICE}%20${WC_HOLDEM_TYPE}&memo=${WC_HOLDEM_MEMO})`
+                        reply.permlink+`-reply-${rank[i]}`, '', repmsg
                         , replyJsonMetadata
                     );  
                 }catch(e){
